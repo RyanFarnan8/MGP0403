@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Trade{% endblock %}
+
+{% block body %}
+    <h1>Trade</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ trade.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ trade.title }}</td>
+            </tr>
+
+
+        <tr>
+            <th>Jobs</th>
+            <td>
+                {% for job in trade.jobs %}
+                    <a href="{{ url('job_show',{'id': job.id}) }}">
+
+
+
+
+                     {{ job }},{{ job.creator }}
+                    </a>
+                    <hr>
+
+                {% endfor %}
+
+
+
+
+
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    <a href="{{ path('trade_index') }}">back to list</a>
+
+    <a href="{{ path('trade_edit', {'id': trade.id}) }}">edit</a>
+
+    {{ include('trade/_delete_form.html.twig') }}
+{% endblock %}

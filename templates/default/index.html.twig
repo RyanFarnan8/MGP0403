@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block body %}
+<h1>Welcome To Tradesmate!</h1>
+
+
+
+  <h3>Here is a list of trades provided </h3>
+  <ul>{% for title in trade %}
+      <li>
+        {{ title }}
+      </li>
+    {% endfor %}</ul>
+
+    <hr>
+    <br>
+
+
+
+
+<div class="gallery">
+        <a href ="{{asset('/plumbing')}}">
+            <img src="{{ asset('build/plumbing.png') }}" height="250" width="250"></a>
+
+
+        <a href ="{{asset('/carpentry')}}">
+            <img src="{{ asset('build/carpentry.png') }}" height="250" width="250"></a>
+
+        <a href ="{{asset('/paint')}}">
+            <img src="{{ asset('build/paint.png') }}" height="250" width="250"></a>
+
+
+        <a href ="{{asset('/electrical')}}">
+            <img src="{{ asset('build/electrical.png') }}" height="250" width="250"></a>
+        </div>
+    <style>
+
+        img {
+            border: 5px solid #555;
+        }
+
+        .gallery {
+            display: grid;
+            margin-left: auto;
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: repeat(8, 5vw);
+            grid-gap: 50px;
+            margin-left: 50px;
+        }
+
+        h3{
+            font-family: Perpetua;
+        }
+
+
+
+    </style>
+
+
+
+
+
+
+
+
+{% endblock %}

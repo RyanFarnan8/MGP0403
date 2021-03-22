@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Carpentry Page{% endblock %}
+
+{% block body %}
+<h1>Welcome To Tradesmate!</h1>
+
+
+
+    <h3>Here is a list of Carpentry Jobs </h3>
+    <table>
+        <thead>
+        <tr>
+
+            <th>Creator</th>
+            <th>Contact</th>
+            <th>Trade</th>
+            <th>Description</th>
+            <th>Location</th>
+        </tr>
+
+        </thead>
+
+
+        <tbody>{% for job in job %}
+            {% if job.trade == 'carpentry' %}
+
+
+
+            <td>{{ job.creator }}</td>
+            <td>{{ job.contact }}</td>
+            <td>{{ job.trade }}</td>
+            <td>{{ job.description }}</td>
+            <td>{{ job.location }}</td>
+
+
+
+
+
+
+
+{% endif %}
+
+
+        {% endfor %}</tbody>
+
+
+
+
+    </table>
+
+
+
+
+{% endblock %}

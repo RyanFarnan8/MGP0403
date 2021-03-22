@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Trade{% endblock %}
+
+{% block body %}
+    <h1>Create new Trade</h1>
+
+    {{ include('trade/_form.html.twig') }}
+
+    <a href="{{ path('trade_index') }}">back to list</a>
+{% endblock %}
