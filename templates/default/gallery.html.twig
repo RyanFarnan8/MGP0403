@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}About Page{% endblock %}
+
+{% block body %}
+
+<h1>Trademate Gallery</h1>
+
+    <div class="gallery">
+        <a href ="{{asset('/plumbing')}}">
+            <img src="{{ asset('build/plumbing.png') }}" height="250" width="250"></a>
+
+
+        <div class="desc">Add a description of the image here</div>
+    </div>
+
+
+        <a href ="{{asset('/carpentry')}}">
+            <img src="{{ asset('build/carpentry.png') }}" height="250" width="250"></a>
+
+        <a href ="{{asset('/paint')}}">
+            <img src="{{ asset('build/paint.png') }}" height="250" width="250"></a>
+
+
+        <a href ="{{asset('/electrical')}}">
+            <img src="{{ asset('build/electrical.png') }}" height="250" width="250"></a>
+    </div>
+
+
+    <style>
+        div.gallery {
+            margin: 5px;
+            border: 1px solid #ccc;
+            float: left;
+            width: 180px;
+        }
+
+        div.gallery:hover {
+            border: 1px solid #777;
+        }
+
+        div.gallery img {
+            width: 100%;
+            height: auto;
+        }
+
+        div.desc {
+            padding: 15px;
+            text-align: center;
+        }
+    </style>
+
+
+
+
+{% endblock %}

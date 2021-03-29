@@ -3,57 +3,144 @@
 {% block title %}Home Page{% endblock %}
 
 {% block body %}
-<h1>Welcome To Tradesmate!</h1>
 
 
+
+    <br>
+    <br>
+    <br>
+
+
+
+<div class="tm">
+    <img src="{{ asset('build/tradesmate1.jpg') }}"></a>
+</div>
+
+    <br>
+    <br>
+    <br>
 
   <h3>Here is a list of trades provided </h3>
+
+
   <ul>{% for title in trade %}
       <li>
         {{ title }}
       </li>
     {% endfor %}</ul>
 
-    <hr>
-    <br>
+
+    <p>"Covid-19: Tradesmate is here to support you with essential call outs for repairs and servicing, including painting & decorating, electrical, and plumbing"</p>
 
 
 
 
-<div class="gallery">
+
+
+
+    <div class="gallery">
         <a href ="{{asset('/plumbing')}}">
             <img src="{{ asset('build/plumbing.png') }}" height="250" width="250"></a>
 
 
+        <div class="desc">Plumbing</div>
+        </div>
+
+    <div class="gallery">
         <a href ="{{asset('/carpentry')}}">
             <img src="{{ asset('build/carpentry.png') }}" height="250" width="250"></a>
 
+
+        <div class="desc">Carpentry</div>
+    </div>
+
+    <div class="gallery">
         <a href ="{{asset('/paint')}}">
             <img src="{{ asset('build/paint.png') }}" height="250" width="250"></a>
 
 
+        <div class="desc">Paint</div>
+    </div>
+
+    <div class="gallery">
         <a href ="{{asset('/electrical')}}">
             <img src="{{ asset('build/electrical.png') }}" height="250" width="250"></a>
-        </div>
+
+
+        <div class="desc">Electrical</div>
+    </div>
+
+    <div class="gallery">
+        <a href ="{{asset('/locksmith')}}">
+            <img src="{{ asset('build/locksmith.png') }}" height="250" width="250"></a>
+
+
+        <div class="desc">Locksmith</div>
+    </div>
+
+    <div class="gallery">
+        <a href ="{{asset('/gardening')}}">
+            <img src="{{ asset('build/gardening.jpg') }}" height="250" width="250"></a>
+
+
+        <div class="desc">Gardening</div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
     <style>
 
-        img {
-            border: 5px solid #555;
+        div.gallery {
+            margin: 5px;
+            float: left;
+            width: 180px;
+            padding:40px;
         }
 
-        .gallery {
-            display: grid;
+        div.gallery:hover {
+            border: 1px solid #777;
+        }
+
+        div.gallery img {
+            width: 100%;
+            height: auto;
+        }
+
+        div.desc {
+            padding: 15px;
+            text-align: center;
+        }
+
+        div.tm{
+
+            display: block;
             margin-left: auto;
-            grid-template-columns: repeat(8, 1fr);
-            grid-template-rows: repeat(8, 5vw);
-            grid-gap: 50px;
-            margin-left: 50px;
+            margin-right: auto;
+            width: 50%;
+
+        }
+
+        ul {
+            padding-left: 100px;
         }
 
         h3{
-            font-family: Perpetua;
+            padding-left: 50px;
         }
 
+        p{
+            text-align: center;
+            font-family: Perpetua;
+            font-size: 20px;
+        }
 
 
     </style>

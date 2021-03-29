@@ -96,4 +96,44 @@ class DefaultController extends AbstractController
         ];
         return $this->render($template, $args);
     }
+
+
+    /**
+     * @Route("/gallery", name="gallery")
+     */
+    public function gallery(JobRepository $jobRepository): Response
+    {
+        $template = 'default/gallery.html.twig';
+        $args = [];
+        return $this->render($template, $args);
+    }
+
+    /**
+     * @Route("/locksmith", name="locksmith")
+     */
+    public function locksmith(JobRepository $jobRepository): Response
+    {
+        $template = 'default/locksmith.html.twig';
+        $args = [
+            'job'=>$jobRepository->findAll()
+
+        ];
+        return $this->render($template, $args);
+    }
+
+
+    /**
+     * @Route("/gardening", name="gardening")
+     */
+    public function gardening(JobRepository $jobRepository): Response
+    {
+        $template = 'default/gardening.html.twig';
+        $args = [
+            'job'=>$jobRepository->findAll()
+
+        ];
+        return $this->render($template, $args);
+    }
+
+
 }

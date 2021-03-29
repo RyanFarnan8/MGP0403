@@ -9,6 +9,7 @@
 
     <h3>Here is a list of Carpentry Jobs </h3>
     <table>
+
         <thead>
         <tr>
 
@@ -23,8 +24,7 @@
 
 
         <tbody>{% for job in job %}
-            {% if job.trade == 'carpentry' %}
-
+            {% if job.trade == 'Carpentry' %}
 
 
             <td>{{ job.creator }}</td>
@@ -39,15 +39,25 @@
 
 
 
+
+
 {% endif %}
 
 
-        {% endfor %}</tbody>
+        {% endfor %} </tbody>
 
 
 
 
     </table>
+
+    <br>
+    <br>
+    <a href ="{{asset('/job')}}">
+        <button type="button">Post A Job</button></a>
+
+
+
 
 
 

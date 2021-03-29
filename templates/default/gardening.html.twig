@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Electrical Page{% endblock %}
+{% block title %}Gardening Page{% endblock %}
 
 {% block body %}
+
+
 <h1>Welcome To Tradesmate!</h1>
 
 
 
-    <h3>Here is a list of Electrician Jobs </h3>
+    <h3>Here is a list of Gardening Jobs </h3>
     <table>
         <thead>
         <tr>
@@ -20,7 +22,7 @@
         </tr>
         </thead>
         <tbody>{% for job in job %}
-            {% if job.trade == 'Electrician' %}
+            {% if job.trade == 'Gardening' %}
 
             <td>{{ job.creator }}</td>
             <td>{{ job.contact }}</td>
@@ -34,6 +36,7 @@
 
 
     </table>
+
 
     <br>
     <br>
