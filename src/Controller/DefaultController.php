@@ -63,7 +63,7 @@ class DefaultController extends AbstractController
     {
         $template = 'default/plumbing.html.twig';
         $args = [
-            'job'=>$jobRepository->findAll()
+            'jobs'=>$jobRepository->findAll()
 
         ];
         return $this->render($template, $args);

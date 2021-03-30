@@ -19,8 +19,8 @@
             <th>Location</th>
         </tr>
         </thead>
-        <tbody>{% for job in job %}
-            {% if job.trade == 'Plumbing' %}
+        <tbody>{% for job in jobs %}
+            {% if job.trade == 'plumbing' %}
 
             <td>{{ job.creator }}</td>
             <td>{{ job.contact }}</td>
