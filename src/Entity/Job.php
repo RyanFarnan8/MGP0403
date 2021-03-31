@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\JobRepository;
 use Doctrine\ORM\Mapping as ORM;
+use PhpParser\Node\Scalar\String_;
+use App\Entity\Timeslots;
 
 /**
  * @ORM\Entity(repositoryClass=JobRepository::class)
@@ -22,7 +24,7 @@ class Job
 
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
     private $contact;
 
@@ -48,6 +50,21 @@ class Job
      */
     private $trade;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=timeslots::class, inversedBy="jobs")
+     */
+    private $timeSlot;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Timeslots::class, inversedBy="jobs")
+     */
+    private $timeslots;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=County::class, inversedBy="jobs")
+     */
+    private $county;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -55,12 +72,12 @@ class Job
 
 
 
-    public function getContact(): ?int
+    public function getContact(): ?String
     {
         return $this->contact;
     }
 
-    public function setContact(int $contact): self
+    public function setContact(String $contact): self
     {
         $this->contact = $contact;
 
@@ -121,4 +138,42 @@ class Job
     {
         return $this->id . ', '.$this->description;
     }
+
+    public function getTimeSlot(): ?timeslots
+    {
+        return $this->timeSlot;
+    }
+
+    public function setTimeSlot(?timeslots $timeSlot): self
+    {
+        $this->timeSlot = $timeSlot;
+
+        return $this;
+    }
+
+    public function getTimeslots(): ?Timeslots
+    {
+        return $this->timeslots;
+    }
+
+    public function setTimeslots(?Timeslots $timeslots): self
+    {
+        $this->timeslots = $timeslots;
+
+        return $this;
+    }
+
+    public function getCounty(): ?County
+    {
+        return $this->county;
+    }
+
+    public function setCounty(?County $county): self
+    {
+        $this->county = $county;
+
+        return $this;
+    }
+
+
 }

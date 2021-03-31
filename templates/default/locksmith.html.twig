@@ -6,7 +6,7 @@
 
 
 
-<h1>Welcome To Tradesmate!</h1>
+
 
 
 
@@ -14,22 +14,24 @@
     <table>
         <thead>
         <tr>
-
             <th>Creator</th>
             <th>Contact</th>
             <th>Trade</th>
             <th>Description</th>
             <th>Location</th>
+            <th>Timeslot</th>
         </tr>
         </thead>
         <tbody>{% for job in job %}
             {% if job.trade == 'Locksmith' %}
 
-            <td>{{ job.creator }}</td>
-            <td>{{ job.contact }}</td>
-            <td>{{ job.trade }}</td>
-            <td>{{ job.description }}</td>
-            <td>{{ job.location }}</td>
+
+                <td>{{ job.creator}}</td>
+                <td>{{ job.contact }}</td>
+                <td>{{ job.trade }}</td>
+                <td>{{ job.description }}</td>
+                <td>{{ job.location }}</td>
+                <td>{{ job.timeslot }}</td>
 
 
 {% endif %}
