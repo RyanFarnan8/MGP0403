@@ -26,12 +26,13 @@
         <tbody>{% for job in job %}
             {% if job.trade == 'Carpentry' %}
 
-
+        <tr>
             <td>{{ job.creator }}</td>
             <td>{{ job.contact }}</td>
             <td>{{ job.trade }}</td>
             <td>{{ job.description }}</td>
             <td>{{ job.location }}</td>
+        </tr>
 
 
 

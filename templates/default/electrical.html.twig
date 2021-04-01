@@ -21,13 +21,13 @@
         </thead>
         <tbody>{% for job in job %}
             {% if job.trade == 'Electrician' %}
-
+        <tr>
             <td>{{ job.creator }}</td>
             <td>{{ job.contact }}</td>
             <td>{{ job.trade }}</td>
             <td>{{ job.description }}</td>
             <td>{{ job.location }}</td>
-
+        </tr>
 
 {% endif %}
         {% endfor %}</tbody>
