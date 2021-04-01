@@ -5,6 +5,7 @@
 {% block body %}
 
 
+<body>
 
 
     <h3>Here is a list of Plumbing Jobs </h3>
@@ -23,7 +24,7 @@
         </thead>
         <tbody>{% for job in jobs%}
             {% if job.trade == 'Plumbing' %}
-
+        <tr>
             <td>{{ job.creator}}</td>
             <td>{{ job.contact}}</td>
             <td>{{ job.trade }}</td>
@@ -31,9 +32,12 @@
             <td>{{ job.county }}</td>
             <td>{{ job.location }}</td>
             <td>{{ job.timeslot }}</td>
+        </tr>
+
 
 
 {% endif %}
+
         {% endfor %}</tbody>
 
 
@@ -43,5 +47,8 @@
     <br>
     <a href="{{ path('job_new') }}">
         <button type="button">Post A Job</button></a>
+
+</body>
+
 
 {% endblock %}
