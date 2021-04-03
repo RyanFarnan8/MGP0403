@@ -25,6 +25,7 @@ class UserFixtures extends Fixture
         $userUser = $this->createUser('user@user.com', 'user');
         $userAdmin = $this->createUser('admin@admin.com', 'admin', 'ROLE_ADMIN');
         $userMatt = $this->createUser('matt@matt.com', 'matt', 'ROLE_SUPER_ADMIN');
+        $userClient = $this->createUser('ryan@client.com', 'client','ROLE_CLIENT');
 
         $carpentry = new Trade();
         $carpentry ->setTitle('carpentry');
@@ -56,6 +57,7 @@ class UserFixtures extends Fixture
         $manager->persist($userUser);
         $manager->persist($userAdmin);
         $manager->persist($userMatt);
+        $manager->persist($userClient);
         $manager->persist($carpentry);
         $manager->persist($plumbing);
         $manager->persist($job1);

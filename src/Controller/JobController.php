@@ -9,12 +9,34 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\CountyRepository;
 
 /**
  * @Route("/job")
  */
 class JobController extends AbstractController
 {
+
+
+    /**
+     * @Route("/searchCounty", name="search_county", methods={"POST"})
+     */
+    public function searchCounty(JobRepository $jobRepository , Request $request ,CountyRepository $countyRepository): Response
+    {
+        $countyName = $request-> request -> get('county');
+        $county = $countyRepository->findByLikeCounty($countyName);
+        $jobs = $jobRepository->findByCounty($county);
+        $template ='job/index.html.twig';
+        $args =
+        [
+            'jobs' => $jobs,
+            'search_text'=>$countyName
+        ];
+        return $this->render($template,$args);
+    }
+
+
+
     /**
      * @Route("/", name="job_index", methods={"GET"})
      */

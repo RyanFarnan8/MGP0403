@@ -4,6 +4,19 @@
 
 {% block body %}
 
+<body>
+<hr>
+<h5>Search Job By County</h5>
+{% if search_text is defined %}
+    You typed in: {{search_text}}
+{% endif %}
+<form method="post" action="{{ url("search_county") }}">
+
+    <input name="county">
+    <input type="submit">
+</form>
+<hr>
+
 
 
 
@@ -59,6 +72,7 @@
 
 
 
+</body>
 
 
 

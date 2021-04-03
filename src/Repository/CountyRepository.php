@@ -22,19 +22,17 @@ class CountyRepository extends ServiceEntityRepository
     // /**
     //  * @return County[] Returns an array of County objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findByLikeCounty($countyName)
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('c.county LIKE :val')
+            ->setParameter('val', "%$countyName%")
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?County
