@@ -9,6 +9,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\User;
 use App\Entity\Job;
 use App\Entity\Trade;
+use App\Entity\County;
 
 class UserFixtures extends Fixture
 {
