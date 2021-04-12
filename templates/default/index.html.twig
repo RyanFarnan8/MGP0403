@@ -33,7 +33,7 @@
 
 
   <ul class ="trade-list">{% for title in trade %}
-      <li class="trade-list">
+      <li>
         {{ title }}
       </li>
     {% endfor %}</ul>
@@ -98,6 +98,8 @@
 
 <style>
 
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
 
 
 
@@ -141,8 +143,15 @@
 
     p{
         text-align: center;
-        font-family: Perpetua;
+        font-family: "Montserrat",sans-serif;
         font-size: 20px;
+    }
+
+
+    .trade-list{
+        background-color: white;
+        font-family: "Montserrat",sans-serif;
+
     }
 
 

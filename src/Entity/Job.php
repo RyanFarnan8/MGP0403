@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use PhpParser\Node\Scalar\String_;
 
 
+
 /**
  * @ORM\Entity(repositoryClass=JobRepository::class)
  */
@@ -18,8 +19,6 @@ class Job
      * @ORM\Column(type="integer")
      */
     private $id;
-
-
 
 
 
@@ -56,9 +55,21 @@ class Job
      */
     private $county;
 
-    public function getId(): ?int
+
+    /**
+     * @return mixed
+     */
+    public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
     }
 
 
@@ -144,6 +155,8 @@ class Job
 
         return $this;
     }
+
+
 
 
 }

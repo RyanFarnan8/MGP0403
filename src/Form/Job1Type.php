@@ -17,8 +17,7 @@ class Job1Type extends AbstractType
             ->add('location')
             ->add('creator')
             ->add('trade')
-            ->add('timeSlot')
-            ->add('timeslots')
+            ->add('county')
         ;
     }
 
