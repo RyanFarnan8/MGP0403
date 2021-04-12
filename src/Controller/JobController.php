@@ -3,13 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Job;
-use App\Form\Job3Type;
+use App\Form\Job1Type;
 use App\Repository\JobRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\CountyRepository;
+
 
 /**
  * @Route("/job")
@@ -28,10 +29,10 @@ class JobController extends AbstractController
         $jobs = $jobRepository->findByCounty($county);
         $template ='job/index.html.twig';
         $args =
-        [
-            'jobs' => $jobs,
-            'search_text'=>$countyName
-        ];
+            [
+                'jobs' => $jobs,
+                'search_text'=>$countyName
+            ];
         return $this->render($template,$args);
     }
 
@@ -53,7 +54,7 @@ class JobController extends AbstractController
     public function new(Request $request): Response
     {
         $job = new Job();
-        $form = $this->createForm(Job3Type::class, $job);
+        $form = $this->createForm(Job1Type::class, $job);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -85,7 +86,7 @@ class JobController extends AbstractController
      */
     public function edit(Request $request, Job $job): Response
     {
-        $form = $this->createForm(Job3Type::class, $job);
+        $form = $this->createForm(Job1Type::class, $job);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
