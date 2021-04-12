@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <meta charset="UTF-8">
+        <meta charset="UTF-8"/>
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link
+                rel="stylesheet"
+                href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+                integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+                crossorigin="anonymous"
+        />
+
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
@@ -11,46 +17,56 @@
         {% endblock %}
         <style>
 
-            @import '/css/style.css';
+           /*@import '/css/style.css';
 
         </style>
         {% block javascripts %}
             {#{{ encore_entry_script_tags('app') }}#}
         {% endblock %}
 
-
-
     </head>
     <body>
         <div class="header">
-            <nav class="navbar navbar-expand-lg fixed-top py-3">
-                <div class="container"><a href="#" class="navbar-brand text-uppercase font-weight-bold"></a>
-                    <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+            <nav
+                    class="navbar navbar-expand-lg navbar-light bg-light"
+                    style="height: 70px;"
+            >
+                <a class="navbar-brand" href="#">TradesMate</a>
 
-                    <div id="navbarSupportedContent" class="collapse navbar-collapse">
-                        <ul class="navbar-nav ml-auto">
-
+                <div id="navbarSupportedContent" class="collapse navbar-collapse"></div>
+                        <AmpContent class="navbar-nav ml-auto">
 
 
                             <li class="nav-item active"><a href="/" class="nav-link text-uppercase font-weight-bold">Home <span class="sr-only">(current)</span></a></li>
                             <li class="nav-item"><a href="about" class="nav-link text-uppercase font-weight-bold">About</a></li>
                             <li class="nav-item"><a href="gallery" class="nav-link text-uppercase font-weight-bold">Gallery</a></li>
                             <li class="nav-item"><a href="contact" class="nav-link text-uppercase font-weight-bold">Contact</a></li>
-                            <li class="nav-item"><a href="{{ url('app_logout') }}" class="nav-link text-uppercase font-weight-bold">
-                                    logout
-                                </a></li>
-                            <li class="nav-item"><a href="{{ url('app_login') }}" class="nav-link text-uppercase font-weight-bold">
+
+                             <NonAmpContent>
+                                 {% if is_granted('ROLE_USER') == false %}
+                            <li><a class="nav-link text-uppercase font-weight-bold" href="{{ url('app_login') }}" >
                                     login
                                 </a></li>
+                            <li><a class="nav-link text-uppercase font-weight-bold" href="{{ url('registration') }}" >
+                                    register
+                                </a></li>
+                                 {% endif %}
+                            </NonAmpContent>
 
-                            {% if is_granted('ROLE_ADMIN') %}
-                            <li class="nav-item">
-                                <a href="{{ url('admin') }}" class="nav-link text-uppercase font-weight-bold">
-                                    Admin Home
-                                </a>
-                            </li>
+                        <AmpContent>
+                            {% if is_granted('ROLE_USER') %}
+
+                                <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Username</button>
+                                <div class="dropdown-menu">
+                                    <a href="{{ url('app_logout') }}" class="dropdown-item">Logout</a>
+                                </div>
+                                </div>
+                               {# <li><a class="nav-link text-uppercase font-weight-bold" href="{{ url('app_logout') }}" >
+                                        logout
+                                    </a></li>#}
                             {% endif %}
-
+                        </AmpContent>
 
 {#                            {% for trade in trades %}#}
 
@@ -93,7 +109,6 @@
     <footer class = "footer">
 
     </footer>
-</html>
 
 
 </body>

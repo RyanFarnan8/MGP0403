@@ -33,14 +33,35 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="json")
      */
-    private $role;
+    private $roles = [];
 
     /**
      * @ORM\OneToMany(targetEntity=Job::class, mappedBy="creator")
      */
     private $jobs;
+
+    private $name;
+
+    /**
+     * @return mixed
+     */
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     * @return mixed
+     */
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
 
     public function __construct()
     {
@@ -72,14 +93,6 @@ class User implements UserInterface
     public function getUsername(): string
     {
         return (string) $this->email;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function getRoles(): array
-    {
-        return [$this->role];
     }
 
 
@@ -118,7 +131,27 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    public function getRole(): ?string
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles($roles): self
+    {
+        $this->roles = $roles;
+        return $this;
+    }
+
+
+    /*public function getRole(): ?string
     {
         return $this->role;
     }
@@ -128,7 +161,7 @@ class User implements UserInterface
         $this->role = $role;
 
         return $this;
-    }
+    }*/
 
     /**
      * @return Collection|Job[]
