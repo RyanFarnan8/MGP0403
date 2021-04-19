@@ -8,15 +8,13 @@
     <p>Your Profile ID: #{{ app.user.id }}</p>
     <p>Your Profile Role: {{ app.user.role }}</p>
 
-    {% if is_granted('ROLE_CLIENT') %}
+
     <button><a href="{{ path('job_new') }}">Create new Job</a></button>
-        {% endif %}
-    {% if is_granted('ROLE_TRADEPERSON') %}
-    <button><a href="{{ asset('/job') }}">View All Jobs</a></button>
-        {% endif %}
 
+    {% if is_granted('ROLE_TRADESMAN') %}
+        <button><a href="{{ path('job_index') }}">View all Jobs</a></button>
 
-
+    {% endif %}
 
 
 

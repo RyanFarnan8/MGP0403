@@ -29,17 +29,16 @@
     <br>
     <br>
 
-  <h3>Here is a list of trades provided </h3>
 
 
-  <ul class ="trade-list">{% for title in trade %}
-      <li>
-        {{ title }}
-      </li>
-    {% endfor %}</ul>
+
 
 
     <p>"Covid-19: Tradesmate is here to support you with essential call outs for repairs and servicing, including painting & decorating, electrical, and plumbing"</p>
+
+
+    <br>
+    <h3>Here is a list of trades provided </h3>
 
 
 
@@ -48,7 +47,7 @@
 
 
     <div class="gallery">
-        <a href ="{{asset('/plumbing')}}">
+       {# <a href ="{{asset('/plumbing')}}"> #}
             <img src="{{ asset('build/plumbing.png') }}" height="250" width="250"></a>
 
 
@@ -56,7 +55,7 @@
         </div>
 
     <div class="gallery">
-        <a href ="{{asset('/carpentry')}}">
+       {#  <a href ="{{asset('/carpentry')}}"> #}
             <img src="{{ asset('build/carpentry.png') }}" height="250" width="250"></a>
 
 
@@ -64,7 +63,7 @@
     </div>
 
     <div class="gallery">
-        <a href ="{{asset('/paint')}}">
+        {#  <a href ="{{asset('/paint')}}"> #}
             <img src="{{ asset('build/paint.png') }}" height="250" width="250"></a>
 
 
@@ -72,7 +71,7 @@
     </div>
 
     <div class="gallery">
-        <a href ="{{asset('/electrical')}}">
+        {#  <a href ="{{asset('/electrical')}}">#}
             <img src="{{ asset('build/electrical.png') }}" height="250" width="250"></a>
 
 
@@ -80,7 +79,7 @@
     </div>
 
     <div class="gallery">
-        <a href ="{{asset('/locksmith')}}">
+        {#  <a href ="{{asset('/locksmith')}}"> #}
             <img src="{{ asset('build/locksmith.png') }}" height="250" width="250"></a>
 
 
@@ -88,12 +87,17 @@
     </div>
 
     <div class="gallery">
-        <a href ="{{asset('/gardening')}}">
+        {#  a href ="{{asset('/gardening')}}"> #}
             <img src="{{ asset('build/gardening.jpg') }}" height="250" width="250"></a>
 
 
         <div class="desc">Gardening</div>
     </div>
+
+
+
+
+
 
 
 <style>

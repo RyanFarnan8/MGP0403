@@ -11,7 +11,7 @@
         {% endblock %}
         <style>
 
-            @import '/css/style.css';
+            @import '../public/css/style.css';
             @import '/css/navstyle.css';
         </style>
         {% block javascripts %}
@@ -35,25 +35,29 @@
                         </a>
                     </li>
                 {% endif %}
-                {% if is_granted('ROLE_CLIENT') %}
+                {% if is_granted('ROLE_CLIENT') or is_granted('ROLE_TRADEPERSON') %}
                     <li class="nav-links">
                         <a href="{{ url('viewProfile') }}" >
                             View Profile
                         </a>
                     </li>
                 {% endif %}
+
+
+
                 {% if is_granted('ROLE_CLIENT') %}
                     <li class="nav-links">
                         <a href="{{ url('job_client_index', { 'id':app.user.id }) }}" >
-                            Open Jobs
+                            My Open Jobs
                         </a>
                     </li>
                 {% endif %}
 
 
+
                 {% if app.user %}
                 <li class="dropdown-content">
-                    <a href="">Current User:  {{ app.user.username }}</a>
+                    <a href="">Current User:  {{ app.user.role }}</a>
 
                     </a>
                 </li>
@@ -66,9 +70,15 @@
                 {% endif %}
 
 
+
+
             </ul>
 
         </nav>
+
+
+        </nav>
+
     </header>
 
 

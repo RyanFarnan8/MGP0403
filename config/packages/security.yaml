@@ -1,8 +1,8 @@
 security:
     role_hierarchy:
         ROLE_CLIENT:       ROLE_USER
-        ROLE_TRADESMAN:       ROLE_USER
-        ROLE_ADMIN:       [ROLE_CLIENT , ROLE_TRADESMAN]
+        ROLE_TRADEPERSON:       ROLE_USER
+        ROLE_ADMIN:       [ROLE_CLIENT , ROLE_TRADEPERSON]
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     encoders:
