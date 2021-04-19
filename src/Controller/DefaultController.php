@@ -156,7 +156,6 @@ class DefaultController extends AbstractController
         return $this->render('FooTransBundle:Default:search.html.twig', array(
             'res' => $res));
     }
-
     /**
      * @Route("/apply", name="apply")
      */
@@ -167,6 +166,14 @@ class DefaultController extends AbstractController
         return $this->render($template, $args);
     }
 
-
-
+    /**
+     * @Route("/favourites", name="favourites")
+     */
+    public function favourites(): Response
+    {
+        $template = 'default/favourites.html.twig';
+        $args = [
+        ];
+        return $this->render($template, $args);
+    }
 }

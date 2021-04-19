@@ -35,17 +35,24 @@
                         </a>
                     </li>
                 {% endif %}
-                {% if is_granted('ROLE_CLIENT') %}
+                {% if is_granted('ROLE_USER') %}
                     <li class="nav-links">
                         <a href="{{ url('viewProfile') }}" >
                             View Profile
                         </a>
                     </li>
                 {% endif %}
-                {% if is_granted('ROLE_CLIENT') %}
+                {% if is_granted('ROLE_USER') %}
                     <li class="nav-links">
                         <a href="{{ url('job_client_index', { 'id':app.user.id }) }}" >
                             Open Jobs
+                        </a>
+                    </li>
+                {% endif %}
+                {% if is_granted('ROLE_USER') %}
+                    <li class="nav-links">
+                        <a href="{{ url('favourites') }}" >
+                            Favourites
                         </a>
                     </li>
                 {% endif %}
