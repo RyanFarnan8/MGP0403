@@ -20,14 +20,10 @@ class Job
      */
     private $id;
 
-
-
     /**
      * @ORM\Column(type="string")
      */
     private $contact;
-
-
 
     /**
      * @ORM\Column(type="string", length=255)

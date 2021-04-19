@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New JobCompleted{% endblock %}
+
+{% block body %}
+    <h1>Create new JobCompleted</h1>
+
+    {{ include('job_completed/_form.html.twig') }}
+
+    <a href="{{ path('job_completed_index') }}">back to list</a>
+{% endblock %}

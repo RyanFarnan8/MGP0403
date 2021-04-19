@@ -2,24 +2,25 @@
 
 namespace App\Form;
 
-use App\Entity\Timeslot;
+use App\Entity\JobCompleted;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class Timeslot1Type extends AbstractType
+class JobCompletedType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
+            ->add('description')
+            ->add('creator')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Timeslot::class,
+            'data_class' => JobCompleted::class,
         ]);
     }
 }

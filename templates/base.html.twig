@@ -35,13 +35,21 @@
                         </a>
                     </li>
                 {% endif %}
-                {% if is_granted('ROLE_GENERALUSER') %}
+                {% if is_granted('ROLE_CLIENT') %}
                     <li class="nav-links">
                         <a href="{{ url('viewProfile') }}" >
                             View Profile
                         </a>
                     </li>
                 {% endif %}
+                {% if is_granted('ROLE_CLIENT') %}
+                    <li class="nav-links">
+                        <a href="{{ url('job_client_index', { 'id':app.user.id }) }}" >
+                            Open Jobs
+                        </a>
+                    </li>
+                {% endif %}
+
 
                 {% if app.user %}
                 <li class="dropdown-content">
@@ -56,6 +64,7 @@
                 {% else %}
                     <li><a href="{{ url('app_login') }}">Login</a></li>
                 {% endif %}
+
 
             </ul>
 

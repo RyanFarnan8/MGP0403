@@ -5,16 +5,20 @@ namespace App\Controller;
 use App\Entity\Job;
 use App\Form\Job1Type;
 use App\Repository\JobRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\CountyRepository;
+use App\Entity\JobCompleted;
+use App\Entity\User;
 
 
 /**
  * @Route("/job")
  */
+
 class JobController extends AbstractController
 {
 
@@ -49,6 +53,19 @@ class JobController extends AbstractController
     }
 
     /**
+     * @Route("/client_index/{id}", name="job_client_index", methods={"GET"})
+     */
+    public function clientIndex(User $user , JobRepository $jobRepository): Response
+    {
+
+        $template = 'job/index.html.twig';
+        $args = [
+            'jobs' => $jobRepository->findByCreator($user)
+        ];
+        return $this->render($template ,$args);
+    }
+
+    /**
      * @Route("/new", name="job_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
@@ -70,6 +87,44 @@ class JobController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/completed/{id}", name="job_completed", methods={"GET"})
+     */
+    public function completed(Job $job,JobRepository $jobRepository, Request $request ): Response
+    {
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $jobCompleted = new JobCompleted();
+        $jobCompleted ->setDescription($job->getDescription());
+        $jobCompleted ->setCreator($job->getCreator());
+
+
+        $entityManager->persist($jobCompleted);
+        $entityManager->remove($job);
+        $entityManager->flush();
+
+            return $this->redirectToRoute('job_index');
+    }
+
+//    /**
+//     * @Route("/completed/{job_id}", name="job_completed", methods={"GET"})
+//     */
+//    public function completed($job_id,JobRepository $jobRepository, Request $request ): Response
+//    {
+//        $job = $jobRepository->find($job_id);
+//        $entityManager = $this->getDoctrine()->getManager();
+//        $jobCompleted = new JobCompleted();
+//        $jobCompleted ->setDescription($job->getDescription());
+//        $jobCompleted ->setCreator($job->getCreator());
+//
+//
+//        $entityManager->persist($jobCompleted);
+//        $entityManager->remove($job);
+//        $entityManager->flush();
+//
+//        return $this->redirectToRoute('job_index');
+//    }
 
     /**
      * @Route("/{id}", name="job_show", methods={"GET"})

@@ -26,7 +26,12 @@ class UserFixtures extends Fixture
         $userUser = $this->createUser('user@user.com', 'user');
         $userAdmin = $this->createUser('admin@admin.com', 'admin', 'ROLE_ADMIN');
         $userMatt = $this->createUser('matt@matt.com', 'matt', 'ROLE_SUPER_ADMIN');
-        $userClient = $this->createUser('ryan@client.com', 'client','ROLE_CLIENT');
+        $userClient1 = $this->createUser('client1@client1.com', 'client1','ROLE_CLIENT');
+        $userClient2 = $this->createUser('client2@client2.com', 'client2','ROLE_CLIENT');
+        $userTrade1 = $this->createUser('trade1@trade1.com', 'trade1','TRADESMAN');
+
+
+
 
         $carpentry = new Trade();
         $carpentry ->setTitle('carpentry');
@@ -54,20 +59,28 @@ class UserFixtures extends Fixture
 
 
 
+
+
+
         // add to DB queue
         $manager->persist($userUser);
         $manager->persist($userAdmin);
         $manager->persist($userMatt);
-        $manager->persist($userClient);
+        $manager->persist($userClient1);
+        $manager->persist($userClient2);
+        $manager->persist($userTrade1);
         $manager->persist($carpentry);
         $manager->persist($plumbing);
         $manager->persist($job1);
         $manager->persist($job2);
 
+
         // send query to DB
         $manager->flush();
 
     }
+
+
 
     private function createUser($username, $plainPassword, $role = 'ROLE_USER'):User
     {

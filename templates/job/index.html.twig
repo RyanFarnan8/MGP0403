@@ -25,6 +25,8 @@
                 <td>
                     <a href="{{ path('job_show', {'id': job.id}) }}">show</a>
                     <a href="{{ path('job_edit', {'id': job.id}) }}">edit</a>
+                    <a href="{{ path('job_completed', {'id': job.id}) }}">Completed</a>
+
                 </td>
             </tr>
         {% else %}

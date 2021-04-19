@@ -42,9 +42,15 @@ class User implements UserInterface
      */
     private $jobs;
 
+    /**
+     * @ORM\OneToMany(targetEntity=JobCompleted::class, mappedBy="creator")
+     */
+    private $jobCompleteds;
+
     public function __construct()
     {
         $this->jobs = new ArrayCollection();
+        $this->jobCompleteds = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -163,5 +169,35 @@ class User implements UserInterface
     public function __toString()
     {
         return $this->email;
+    }
+
+    /**
+     * @return Collection|JobCompleted[]
+     */
+    public function getJobCompleteds(): Collection
+    {
+        return $this->jobCompleteds;
+    }
+
+    public function addJobCompleted(JobCompleted $jobCompleted): self
+    {
+        if (!$this->jobCompleteds->contains($jobCompleted)) {
+            $this->jobCompleteds[] = $jobCompleted;
+            $jobCompleted->setCreator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJobCompleted(JobCompleted $jobCompleted): self
+    {
+        if ($this->jobCompleteds->removeElement($jobCompleted)) {
+            // set the owning side to null (unless already changed)
+            if ($jobCompleted->getCreator() === $this) {
+                $jobCompleted->setCreator(null);
+            }
+        }
+
+        return $this;
     }
 }

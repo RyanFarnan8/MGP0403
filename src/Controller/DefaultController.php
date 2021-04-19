@@ -157,5 +157,16 @@ class DefaultController extends AbstractController
             'res' => $res));
     }
 
+    /**
+     * @Route("/apply", name="apply")
+     */
+    public function apply(): Response
+    {
+        $template = 'default/apply.html.twig';
+        $args = [];
+        return $this->render($template, $args);
+    }
+
+
 
 }
