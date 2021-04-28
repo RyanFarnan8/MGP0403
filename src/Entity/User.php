@@ -47,10 +47,16 @@ class User implements UserInterface
      */
     private $jobCompleteds;
 
+    /**
+     * @ORM\OneToMany(targetEntity=JobApplication::class, mappedBy="tradeperson")
+     */
+    private $jobApplications;
+
     public function __construct()
     {
         $this->jobs = new ArrayCollection();
         $this->jobCompleteds = new ArrayCollection();
+        $this->jobApplications = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -195,6 +201,36 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($jobCompleted->getCreator() === $this) {
                 $jobCompleted->setCreator(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|JobApplication[]
+     */
+    public function getJobApplications(): Collection
+    {
+        return $this->jobApplications;
+    }
+
+    public function addJobApplication(JobApplication $jobApplication): self
+    {
+        if (!$this->jobApplications->contains($jobApplication)) {
+            $this->jobApplications[] = $jobApplication;
+            $jobApplication->setTradeperson($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJobApplication(JobApplication $jobApplication): self
+    {
+        if ($this->jobApplications->removeElement($jobApplication)) {
+            // set the owning side to null (unless already changed)
+            if ($jobApplication->getTradeperson() === $this) {
+                $jobApplication->setTradeperson(null);
             }
         }
 

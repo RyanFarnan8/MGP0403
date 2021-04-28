@@ -30,5 +30,35 @@
 
     <a href="{{ path('job_edit', {'id': job.id}) }}">edit</a>
 
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Price</th>
+            <th>Tradeperson</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for job_application in job_applications %}
+            <tr>
+                <td>{{ job_application.id }}</td>
+                <td>{{ job_application.price }}</td>
+                <td>{{ job_application.tradeperson.email }}</td>
+                <td>
+                   <a href="{{ url('job_application_accept',{'id': job_application.id , 'job_id': job.id}) }}">
+                       Accept application
+                   </a>
+                </td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
     {{ include('job/_delete_form.html.twig') }}
 {% endblock %}

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\JobRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use PhpParser\Node\Scalar\String_;
 
@@ -50,6 +52,16 @@ class Job
      * @ORM\ManyToOne(targetEntity=County::class, inversedBy="jobs")
      */
     private $county;
+
+    /**
+     * @ORM\OneToMany(targetEntity=JobApplication::class, mappedBy="job")
+     */
+    private $jobApplications;
+
+    public function __construct()
+    {
+        $this->jobApplications = new ArrayCollection();
+    }
 
 
     /**
@@ -148,6 +160,36 @@ class Job
     public function setCounty(?County $county): self
     {
         $this->county = $county;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|JobApplication[]
+     */
+    public function getJobApplications(): Collection
+    {
+        return $this->jobApplications;
+    }
+
+    public function addJobApplication(JobApplication $jobApplication): self
+    {
+        if (!$this->jobApplications->contains($jobApplication)) {
+            $this->jobApplications[] = $jobApplication;
+            $jobApplication->setJob($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJobApplication(JobApplication $jobApplication): self
+    {
+        if ($this->jobApplications->removeElement($jobApplication)) {
+            // set the owning side to null (unless already changed)
+            if ($jobApplication->getJob() === $this) {
+                $jobApplication->setJob(null);
+            }
+        }
 
         return $this;
     }

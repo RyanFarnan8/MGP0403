@@ -131,9 +131,19 @@ class JobController extends AbstractController
      */
     public function show(Job $job): Response
     {
-        return $this->render('job/show.html.twig', [
+
+        $jobApplications = $job->getJobApplications();
+
+        $template = 'job/show.html.twig';
+
+        $args=[
             'job' => $job,
-        ]);
+            'job_applications' => $jobApplications,
+
+        ];
+
+
+        return $this->render('job/show.html.twig', $args);
     }
 
     /**
