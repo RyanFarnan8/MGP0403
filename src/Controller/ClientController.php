@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,12 +27,12 @@ class ClientController extends AbstractController
     /**
      * @Route("/viewProfile", name="viewProfile")
      */
-    public function viewProfile(): Response
+    public function viewProfile(UserRepository $userRepository): Response
     {
         return $this->render('client/viewProfile.html.twig', [
-            'controller_name' => 'ClientController',
         ]);
     }
+
 
 
 
