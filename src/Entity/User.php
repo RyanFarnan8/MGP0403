@@ -52,6 +52,16 @@ class User implements UserInterface
      */
     private $jobApplications;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $contactNumber;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Trade::class, inversedBy="users")
+     */
+    private $trade;
+
     public function __construct()
     {
         $this->jobs = new ArrayCollection();
@@ -233,6 +243,30 @@ class User implements UserInterface
                 $jobApplication->setTradeperson(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getContactNumber(): ?string
+    {
+        return $this->contactNumber;
+    }
+
+    public function setContactNumber(string $contactNumber): self
+    {
+        $this->contactNumber = $contactNumber;
+
+        return $this;
+    }
+
+    public function getTrade(): ?Trade
+    {
+        return $this->trade;
+    }
+
+    public function setTrade(?Trade $trade): self
+    {
+        $this->trade = $trade;
 
         return $this;
     }

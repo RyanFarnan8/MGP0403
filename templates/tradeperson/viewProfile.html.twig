@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Contact Page{% endblock %}
+{% block title %}Profile{% endblock %}
 
 {% block body %}
     <h3>Your Profile Details</h3>
@@ -9,12 +9,11 @@
     <p>Your Profile Role: {{ app.user.role }}</p>
 
 
-    <button><a href="{{ path('job_new') }}">Create new Job</a></button>
 
-    {% if is_granted('ROLE_TRADESMAN') %}
-        <button><a href="{{ path('job_index') }}">View all Jobs</a></button>
 
-    {% endif %}
+
+
+
 
 
 

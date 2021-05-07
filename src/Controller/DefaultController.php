@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\JobRepository;
 use App\Repository\TradeRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -59,11 +60,11 @@ class DefaultController extends AbstractController
     /**
      * @Route("/plumbing", name="plumbing")
      */
-    public function plumbing(JobRepository $jobRepository): Response
+    public function plumbing(UserRepository $userRepository): Response
     {
         $template = 'default/plumbing.html.twig';
         $args = [
-            'jobs'=>$jobRepository->findAll()
+            'users'=>$userRepository->findAll()
 
         ];
         return $this->render($template, $args);
@@ -176,4 +177,16 @@ class DefaultController extends AbstractController
         ];
         return $this->render($template, $args);
     }
+
+    /**
+     * @Route("/job_Dashboard", name="jobDashboard")
+     */
+    public function jobDashboard(): Response
+    {
+        $template = 'default/apply.html.twig';
+        $args = [];
+        return $this->render($template, $args);
+    }
+
+
 }

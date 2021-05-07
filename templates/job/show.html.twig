@@ -13,6 +13,10 @@
                         <td>{{ job.id }}</td>
                     </tr>
                     <tr>
+                        <th>Posted By</th>
+                        <td>{{ job.creator }}</td>
+                    </tr>
+                    <tr>
                         <th>Contact</th>
                         <td>{{ job.contact }}</td>
                     </tr>
@@ -25,8 +29,14 @@
                         <td>{{ job.location }}</td>
                     </tr>
 
+
         </tbody>
     </table>
+
+
+    <a href="{{ path('job_application_new',{'job_id': job.id}) }}">
+        Apply
+    </a>
 
     <a href="{{ path('job_index') }}">back to list</a>
 
@@ -51,7 +61,9 @@
                    <a href="{{ url('job_application_accept',{'id': job_application.id , 'job_id': job.id}) }}">
                        Accept application
                    </a>
+
                 </td>
+
 
             </tr>
         {% else %}

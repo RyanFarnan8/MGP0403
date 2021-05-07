@@ -14,7 +14,7 @@ class JobApplicationType extends AbstractType
         $builder
             ->add('price')
             ->add('job')
-            ->add('tradeperson')
+        //    ->add('tradeperson')
         ;
     }
 

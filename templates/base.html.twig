@@ -28,37 +28,9 @@
                 <li><a href="{{ url('default') }}">Home</a></li>
                 <li><a href="{{ url('about') }}">About</a></li>
                 <li><a href="{{ url('contact') }}">Contact Us</a></li>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <li class="nav-links">
-                        <a href="{{ url('admin') }}" >
-                            Admin Home
-                        </a>
-                    </li>
-                {% endif %}
-                {% if is_granted('ROLE_CLIENT') %}
-                    <li class="nav-links">
-                        <a href="{{ url('viewProfile') }}" >
-                            View Profile
-                        </a>
-                    </li>
-                {% endif %}
-                {% if is_granted('ROLE_CLIENT') %}
-                    <li class="nav-links">
-                        <a href="{{ url('job_client_index', { 'id':app.user.id }) }}" >
-                            Open Jobs
-                        </a>
-                    </li>
-                {% endif %}
-
 
                 {% if app.user %}
-                <li class="dropdown-content">
-                    <a href="">Current User:  {{ app.user.username }}</a>
 
-                    </a>
-                </li>
-                {% endif %}
-                {% if app.user %}
                     <li><a href="{{ url('app_logout') }}">Logout</a></li>
 
                 {% else %}
@@ -91,9 +63,13 @@
     <br>
     <br>
     <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-        {% block body %}{% endblock %}
+
+
+        {% block body %}
+
+
+
+        {% endblock %}
 
                 </div>
             </div>
@@ -106,9 +82,6 @@
     <br>
     <br>
 
-    <footer class = "footer">
-
-    </footer>
 
 
 </body>

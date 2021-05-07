@@ -71,10 +71,22 @@ class JobController extends AbstractController
     public function new(Request $request): Response
     {
         $job = new Job();
+        $user = $this->getUser();
+        
+
+
+
+       // $job->setContact($user->getContactNumber());
+
+        $job->setContact($user->getContactNumber());
         $form = $this->createForm(Job1Type::class, $job);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+
+            $job->setCreator($user);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($job);
             $entityManager->flush();

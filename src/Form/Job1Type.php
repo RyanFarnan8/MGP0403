@@ -12,10 +12,10 @@ class Job1Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('contact')
+            //    ->add('contact')
             ->add('description')
             ->add('location')
-            ->add('creator')
+       //     ->add('creator')
             ->add('trade')
             ->add('county')
         ;

@@ -17,40 +17,31 @@
 
 
 
-<form method="post" action="{{ url("search_county") }}">
 
-    <input name="county">
-    <input type="submit">
-</form>
 <br>
 <br>
 
 
 
 
-    <h3>Here is a list of Plumbing Jobs </h3>
+    <h3>Here is a list of TradesMates who specialize in Plumbing: </h3>
     <table>
         <thead>
         <tr>
 
-            <th>Creator</th>
-            <th>Contact</th>
+            <th>Email</th>
+
             <th>Trade</th>
-            <th>Description</th>
-            <th>County</th>
-            <th>Location</th>
-            <th>Timeslot</th>
+
+
         </tr>
         </thead>
-        <tbody>{% for job in jobs%}
-            {% if job.trade == 'Plumbing' %}
+        <tbody>{% for user in users%}
+            {% if user.trade == 'Plumbing' %}
         <tr>
-            <td>{{ job.creator}}</td>
-            <td>{{ job.contact}}</td>
-            <td>{{ job.trade }}</td>
-            <td>{{ job.description }}</td>
-            <td>{{ job.county }}</td>
-            <td>{{ job.location }}</td>
+            <td>{{ user.email}}</td>
+
+            <td>{{ user.trade }}</td>
 
         </tr>
 
@@ -65,8 +56,6 @@
 
     <br>
     <br>
-    <a href="{{ path('job_new') }}">
-        <button type="button">Post A Job</button></a>
 
 </body>
 

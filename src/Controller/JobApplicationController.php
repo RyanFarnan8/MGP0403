@@ -54,11 +54,23 @@ class JobApplicationController extends AbstractController
      */
     public function new(Request $request): Response
     {
+
         $jobApplication = new JobApplication();
+
+        $user = $this->getUser();
+
+
+
+
         $form = $this->createForm(JobApplicationType::class, $jobApplication);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            //Person who applied for the job will be set as Tradeperson who applied
+            $jobApplication->setTradeperson($user);
+
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($jobApplication);
             $entityManager->flush();
