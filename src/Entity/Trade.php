@@ -34,10 +34,16 @@ class Trade
      */
     private $users;
 
+    /**
+     * @ORM\OneToMany(targetEntity=JobAssigned::class, mappedBy="trade")
+     */
+    private $jobAssigneds;
+
     public function __construct()
     {
         $this->jobs = new ArrayCollection();
         $this->users = new ArrayCollection();
+        $this->jobAssigneds = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -116,6 +122,36 @@ class Trade
             // set the owning side to null (unless already changed)
             if ($user->getTrade() === $this) {
                 $user->setTrade(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|JobAssigned[]
+     */
+    public function getJobAssigneds(): Collection
+    {
+        return $this->jobAssigneds;
+    }
+
+    public function addJobAssigned(JobAssigned $jobAssigned): self
+    {
+        if (!$this->jobAssigneds->contains($jobAssigned)) {
+            $this->jobAssigneds[] = $jobAssigned;
+            $jobAssigned->setTrade($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJobAssigned(JobAssigned $jobAssigned): self
+    {
+        if ($this->jobAssigneds->removeElement($jobAssigned)) {
+            // set the owning side to null (unless already changed)
+            if ($jobAssigned->getTrade() === $this) {
+                $jobAssigned->setTrade(null);
             }
         }
 

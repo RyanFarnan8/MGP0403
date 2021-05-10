@@ -27,79 +27,98 @@
     <br>
 
 
+    <br>
+    <br>
+    {% if app.user %}
+        <nav>
+            <ul class="nav-links">
 
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-links">
+                        <a href="{{ url('admin') }}" >
+                            Admin Home
+                        </a>
+                    </li>
+                {% endif %}
+                {% if is_granted('ROLE_CLIENT') %}
+                    <li class="nav-links">
+                        <a href="{{ url('viewProfile') }}" >
+                            My Profile
+                        </a>
+                    </li>
+                {% endif %}
+                {% if is_granted('ROLE_TRADEPERSON') %}
+                    <li class="nav-links">
+                        <a href="{{ url('viewProfile') }}" >
+                            My Profile
+                        </a>
+                    </li>
+                {% endif %}
+
+
+
+                {% if is_granted('ROLE_TRADEPERSON') %}
+                    <li class="nav-links">
+                        <a href="{{ url('jobDashboard') }}" >
+                            Job Dashboard
+                        </a>
+                    </li>
+                {% endif %}
+
+
+                {% if is_granted('ROLE_CLIENT') %}
+                    <li class="nav-links">
+                        <a href="{{ url('jobDashboard') }}" >
+                            Job Dashboard
+                        </a>
+                    </li>
+                {% endif %}
+
+
+                {% if app.user %}
+                    <li class="dropdown-content">
+                        <a href="">Current User:  {{ app.user.username }}</a>
+
+                        </a>
+                    </li>
+                {% endif %}
+
+
+
+            </ul>
+
+        </nav>
+    {% endif %}
+    <br>
+    <br>
 
 
 
 
     <p>"Covid-19: Tradesmate is here to support you with essential call outs for repairs and servicing, including painting & decorating, electrical, and plumbing"</p>
 
-
     <br>
     <br>
-
-    {% if app.user %}
-    <nav>
-        <ul class="nav-links">
-
-            {% if is_granted('ROLE_ADMIN') %}
-                <li class="nav-links">
-                    <a href="{{ url('admin') }}" >
-                        Admin Home
-                    </a>
-                </li>
-            {% endif %}
-            {% if is_granted('ROLE_CLIENT') %}
-                <li class="nav-links">
-                    <a href="{{ url('viewProfile') }}" >
-                        My Profile
-                    </a>
-                </li>
-            {% endif %}
-            {% if is_granted('ROLE_TRADEPERSON') %}
-                <li class="nav-links">
-                    <a href="{{ url('viewProfile') }}" >
-                        My Profile
-                    </a>
-                </li>
-            {% endif %}
-
-
-
-            {% if is_granted('ROLE_TRADEPERSON') %}
-                <li class="nav-links">
-                    <a href="{{ url('jobDashboard') }}" >
-                        Job Dashboard
-                    </a>
-                </li>
-            {% endif %}
-
-
-            {% if is_granted('ROLE_CLIENT') %}
-                <li class="nav-links">
-                    <a href="{{ url('jobDashboard') }}" >
-                        Job Dashboard
-                    </a>
-                </li>
-            {% endif %}
-
-
-            {% if app.user %}
-                <li class="dropdown-content">
-                    <a href="">Current User:  {{ app.user.username }}</a>
-
-                    </a>
-                </li>
-            {% endif %}
-
-
-
-        </ul>
-
-    </nav>
-    {% endif %}
     <br>
     <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h3>How TradesMate works?</h3>
+    <p>Tradesmate allows people of all trades to locate both domestic and commercial projects or call outs all across Ireland</p>
+    <p>Simply post a job using our job form and it will be visible to all tradesmates so they can make offers for your job or contact you directly</p>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
     <h3>Here is a list of trades provided </h3>
 
 
@@ -108,53 +127,35 @@
 
 
         <div class="gallery">
-       {# <a href ="{{asset('/plumbing')}}"> #}
-            <img src="{{ asset('build/plumbing.png') }}" height="250" width="250"></a>
-
-
-        <div class="desc">Plumbing</div>
+            {# <a href ="{{asset('/plumbing')}}"> #}
+                <img src="{{ asset('build/PlumbingNew.png') }}" height="250" width="250"></a>
         </div>
 
-    <div class="gallery">
-       {#  <a href ="{{asset('/carpentry')}}"> #}
-            <img src="{{ asset('build/carpentry.png') }}" height="250" width="250"></a>
+         <div class="gallery">
+            {#  <a href ="{{asset('/carpentry')}}"> #}
+                <img src="{{ asset('build/Carpentry1.png') }}" height="550" width="550"></a>
+        </div>
 
+        <div class="gallery">
+            {#  <a href ="{{asset('/paint')}}"> #}
+                <img src="{{ asset('build/P&D1.png') }}" height="250" width="250"></a>
+        </div>
 
-        <div class="desc">Carpentry</div>
-    </div>
+        <div class="gallery">
+            {#  <a href ="{{asset('/electrical')}}">#}
+                <img src="{{ asset('build/electrical.png') }}" height="250" width="250"></a>
+        </div>
 
-    <div class="gallery">
-        {#  <a href ="{{asset('/paint')}}"> #}
-            <img src="{{ asset('build/paint.png') }}" height="250" width="250"></a>
+        <div class="gallery">
+            {#  <a href ="{{asset('/locksmith')}}"> #}
+                <img src="{{ asset('build/locksmith.png') }}" height="250" width="250"></a>
+        </div>
 
+        <div class="gallery">
+            {#  a href ="{{asset('/gardening')}}"> #}
+                <img src="{{ asset('build/gardening.jpg') }}" height="250" width="250"></a>
+        </div>
 
-        <div class="desc">Paint</div>
-    </div>
-
-    <div class="gallery">
-        {#  <a href ="{{asset('/electrical')}}">#}
-            <img src="{{ asset('build/electrical.png') }}" height="250" width="250"></a>
-
-
-        <div class="desc">Electrical</div>
-    </div>
-
-    <div class="gallery">
-        {#  <a href ="{{asset('/locksmith')}}"> #}
-            <img src="{{ asset('build/locksmith.png') }}" height="250" width="250"></a>
-
-
-        <div class="desc">Locksmith</div>
-    </div>
-
-    <div class="gallery">
-        {#  a href ="{{asset('/gardening')}}"> #}
-            <img src="{{ asset('build/gardening.jpg') }}" height="250" width="250"></a>
-
-
-        <div class="desc">Gardening</div>
-    </div>
-</div>
 
 
 
@@ -175,19 +176,16 @@
         padding:40px;
     }
 
-    div.gallery:hover {
+ /*   div.gallery:hover {
         border: 1px solid #777;
-    }
+    }*/
 
     div.gallery img {
         width: 100%;
         height: auto;
     }
 
-    div.desc {
-        padding: 15px;
-        text-align: center;
-    }
+
 
     div.tm{
 

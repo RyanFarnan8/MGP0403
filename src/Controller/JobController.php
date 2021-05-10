@@ -72,26 +72,33 @@ class JobController extends AbstractController
     {
         $job = new Job();
         $user = $this->getUser();
+
         
 
 
 
-       // $job->setContact($user->getContactNumber());
 
-        $job->setContact($user->getContactNumber());
+
+
+
         $form = $this->createForm(Job1Type::class, $job);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $this->addFlash('success', 'Job has been posted!');
+
 
             $job->setCreator($user);
+
+            $job->setContact($user->getContactNumber());
+
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($job);
             $entityManager->flush();
 
-            return $this->redirectToRoute('job_index');
+            return $this->redirectToRoute('jobDashboard');
         }
 
         return $this->render('job/new.html.twig', [
@@ -113,6 +120,24 @@ class JobController extends AbstractController
 
 
         $entityManager->persist($jobCompleted);
+        $entityManager->remove($job);
+        $entityManager->flush();
+
+            return $this->redirectToRoute('job_index');
+    }
+
+    /**
+     * @Route("/assigned/{id}", name="job_assigned", methods={"GET"})
+     */
+    public function assigned(Job $job,JobRepository $jobRepository, Request $request ): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $jobAssigned = new JobAssigned();
+        $jobAssigned ->setDescription($job->getDescription());
+        $jobAssigned ->setCreator($job->getCreator());
+
+
+        $entityManager->persist($jobAssigned);
         $entityManager->remove($job);
         $entityManager->flush();
 

@@ -33,15 +33,18 @@
         </tbody>
     </table>
 
-
+{% if is_granted ('ROLE_TRADEPERSON') %}
     <a href="{{ path('job_application_new',{'job_id': job.id}) }}">
         Apply
     </a>
-
+{% endif %}
     <a href="{{ path('job_index') }}">back to list</a>
 
     <a href="{{ path('job_edit', {'id': job.id}) }}">edit</a>
-
+<br>
+    <br>
+    <br>
+    <h3>Applications For This Job</h3>
     <table class="table">
         <thead>
         <tr>

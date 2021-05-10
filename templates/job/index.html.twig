@@ -10,6 +10,7 @@
 
         <input name="county">
         <input type="submit">
+
     </form>
     <br>
 
@@ -24,12 +25,12 @@
                 <th>Address</th>
                 <th>County</th>
                 <th>Creator</th>
-                <th>actions</th>
+
             </tr>
         </thead>
         <tbody>
         {% for job in jobs %}
-            <tr>
+
                 <td>{{ job.id }}</td>
                 <td>{{ job.contact }}</td>
                 <td>{{ job.trade }}</td>
@@ -38,10 +39,14 @@
                 <td>{{ job.county }}</td>
                 <td>{{ job.creator }}</td>
                 <td>
-                    <a href="{{ path('job_show', {'id': job.id}) }}">show</a>
-                    <a href="{{ path('job_edit', {'id': job.id}) }}">edit</a>
-                    <a href="{{ path('job_completed', {'id': job.id}) }}">Completed</a>
-
+                    <button>
+                        <a href="{{ path('job_show', {'id': job.id}) }}">Applications</a> {#<a href="{{ path('job_edit', {'id': job.id}) }}">edit</a>#}
+                    </button>
+                </td>
+                <td>
+                    <button>
+                        <a href="{{ path('job_completed', {'id': job.id}) }}">Completed</a>
+                    </button>
                 </td>
             </tr>
         {% else %}
@@ -51,6 +56,9 @@
         {% endfor %}
         </tbody>
     </table>
+    <button>
+        <a href="{{ path('jobDashboard') }}">Back</a>
+    </button>
 
 
 {% endblock %}

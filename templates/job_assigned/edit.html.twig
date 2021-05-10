@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit JobAssigned{% endblock %}
+
+{% block body %}
+    <h1>Edit JobAssigned</h1>
+
+    {{ include('job_assigned/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('job_assigned_index') }}">back to list</a>
+
+    {{ include('job_assigned/_delete_form.html.twig') }}
+{% endblock %}

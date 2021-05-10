@@ -62,11 +62,17 @@ class User implements UserInterface
      */
     private $trade;
 
+    /**
+     * @ORM\OneToMany(targetEntity=JobAssigned::class, mappedBy="creator")
+     */
+    private $jobAssigneds;
+
     public function __construct()
     {
         $this->jobs = new ArrayCollection();
         $this->jobCompleteds = new ArrayCollection();
         $this->jobApplications = new ArrayCollection();
+        $this->jobAssigneds = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -270,4 +276,34 @@ class User implements UserInterface
 
         return $this;
     }
+
+//    /**
+//     * @return Collection|JobAssigned[]
+//     */
+//    public function getJobAssigneds(): Collection
+//    {
+//        return $this->jobAssigneds;
+//    }
+//
+//    public function addJobAssigned(JobAssigned $jobAssigned): self
+//    {
+//        if (!$this->jobAssigneds->contains($jobAssigned)) {
+//            $this->jobAssigneds[] = $jobAssigned;
+//            $jobAssigned->setCreator($this);
+//        }
+//
+//        return $this;
+//    }
+//
+//    public function removeJobAssigned(JobAssigned $jobAssigned): self
+//    {
+//        if ($this->jobAssigneds->removeElement($jobAssigned)) {
+//            // set the owning side to null (unless already changed)
+//            if ($jobAssigned->getCreator() === $this) {
+//                $jobAssigned->setCreator(null);
+//            }
+//        }
+//
+//        return $this;
+//    }
 }

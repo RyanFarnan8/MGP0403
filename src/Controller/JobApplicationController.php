@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\JobApplication;
+use App\Entity\JobAssigned;
 use App\Form\JobApplicationType;
 use App\Repository\JobApplicationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Job;
+use App\Repository\JobRepository;
 
 /**
  * @Route("/job_application")
@@ -22,21 +24,38 @@ class JobApplicationController extends AbstractController
     /**
      * @Route("/accept/{id}/{job_id}", name="job_application_accept")
      */
-    public function accept(JobApplication $jobApplication, Job $job): Response
+    public function accept(JobApplication $jobApplication,$job_id, JobRepository $jobRepository): Response
     {
-        $acceptedJob = new AcceptedJob();
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $job = $jobRepository->find($job_id);
+
+        $jobAssigned = new JobAssigned();
+        $jobAssigned ->setDescription($job->getDescription());
+        $jobAssigned ->setCreator($job->getCreator());
+        $jobAssigned ->setCounty($job->getCounty());
+        $jobAssigned ->setContact($job->getContact());
+        $jobAssigned ->setLocation($job->getLocation());
+        $jobAssigned ->setPrice($jobApplication->getPrice());
+        $jobAssigned ->setTradePerson($jobApplication->getTradePerson());
+
+
+
     /*
      * Create Entity: (Accepted Job) defines Job applications properties with job properties
      *
      */
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($acceptedJob);
+
+
         $entityManager->remove($job);
         $entityManager->remove($jobApplication);
         $entityManager->flush();
 
-        return $this->redirectToRoute('accepted_job_index');
+        $entityManager->persist($jobAssigned);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('job_assigned_index');
 
     }
     /**
@@ -62,20 +81,30 @@ class JobApplicationController extends AbstractController
 
 
 
+
+
+
         $form = $this->createForm(JobApplicationType::class, $jobApplication);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+
+            $this->addFlash('success', 'Your Application for this job has been made! Your offer will now be visible to the client..');
+
             //Person who applied for the job will be set as Tradeperson who applied
             $jobApplication->setTradeperson($user);
+
+
+
+
 
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($jobApplication);
             $entityManager->flush();
 
-            return $this->redirectToRoute('job_application_index');
+            return $this->redirectToRoute('jobDashboard');
         }
 
         return $this->render('job_application/new.html.twig', [

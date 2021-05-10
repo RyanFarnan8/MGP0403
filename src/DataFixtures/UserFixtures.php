@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\JobApplication;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -23,20 +24,24 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         // create objects
-        $userUser = $this->createUser('user@user.com', 'user','');
-        $userAdmin = $this->createUser('admin@admin.com', 'admin', 'ROLE_ADMIN');
-        $userMatt = $this->createUser('matt@matt.com', 'matt', 'ROLE_SUPER_ADMIN');
+        $userUser = $this->createUser('user@user.com', 'user','0863432421');
+        $userAdmin = $this->createUser('admin@admin.com', 'admin','0895463867', 'ROLE_ADMIN');
+        $userMatt = $this->createUser('matt@matt.com', 'matt', '0835779567','ROLE_SUPER_ADMIN');
 
 
-        $userClient1 = $this->createUser('client1@client1.com', 'client1','ROLE_CLIENT');
-        $userClient2 = $this->createUser('client2@client2.com', 'client2','ROLE_CLIENT');
+        $userClient1 = $this->createUser('client1@client1.com', 'client1','0831234567','ROLE_CLIENT');
+        $userClient2 = $this->createUser('client2@client2.com', 'client2','0873406521','ROLE_CLIENT');
+        $userClient3 = $this->createUser('client3@client3.com', 'client3','0839888967','ROLE_CLIENT');
+        $userClient4 = $this->createUser('client4@client4.com', 'client4','0834254660','ROLE_CLIENT');
+        $userClient5 = $this->createUser('client5@client5.com', 'client5','0863435000','ROLE_CLIENT');
+        $userClient6 = $this->createUser('client6@client6.com', 'client6','0852343567','ROLE_CLIENT');
 
 
 
 
-        $userTrade1 = $this->createUser('trade1@trade1.com', 'trade1','ROLE_TRADEPERSON');
-        $userTrade2 = $this->createUser('trade2@trade2.com', 'trade2','ROLE_TRADEPERSON');
-        $userTrade3 = $this->createUser('trade3@trade3.com', 'trade3','ROLE_TRADEPERSON');
+        $userTrade1 = $this->createUser('trade1@trade1.com', 'trade1','0896534567','ROLE_TRADEPERSON');
+        $userTrade2 = $this->createUser('trade2@trade2.com', 'trade2','0830297567','ROLE_TRADEPERSON');
+        $userTrade3 = $this->createUser('trade3@trade3.com', 'trade3','0831908769','ROLE_TRADEPERSON');
 
 
 
@@ -63,22 +68,75 @@ class UserFixtures extends Fixture
         $locksmith->setTitle('Locksmith');
 
 
+        $notrade = new Trade();
+        $notrade->setTitle('Not a tradeperson');
+
+
 
 
 
         $job1 = new Job();
-        $job1 -> setCreator($userUser);
+        $job1 -> setCreator($userClient1);
         $job1->setTrade($carpentry);
-        $job1->setContact(434);
-        $job1->setDescription('Make a bench');
-        $job1->setLocation('Dublin 15');
+        $job1->setDescription('Fit a kitchen into the canteen');
+        $job1->setContact('0857567346');
+        $job1->setLocation('Lidl Clonee , Clonee Village');
 
         $job2 = new Job();
-        $job2 ->setCreator($userMatt);
+        $job2 ->setCreator($userClient2);
         $job2->setTrade($carpentry);
-        $job2->setContact(435);
-        $job2->setDescription('Make a chair');
-        $job2->setLocation('Dublin 15');
+        $job2->setContact('0844545346');
+        $job2->setDescription('Build a custom walk in wardrobe');
+        $job2->setLocation('76 Talbot St.');
+
+
+        $job3 = new Job();
+        $job3 ->setCreator($userClient3);
+        $job3->setTrade($paint);
+        $job3->setContact('0834545346');
+        $job3->setDescription('Paint a cafe approx 80m2');
+        $job3->setLocation('Cork City Industrial Estate, Cobh St.');
+
+        $job4 = new Job();
+        $job4 ->setCreator($userClient4);
+        $job4->setTrade($locksmith);
+        $job4->setContact('0836879867');
+        $job4->setDescription('Replace Front and Hall Door locks . ASAP');
+        $job4->setLocation('Contact me privately for my address');
+
+        $job5 = new Job();
+        $job5 ->setCreator($userClient5);
+        $job5->setTrade($plumbing);
+        $job5->setContact('087043238534');
+        $job5->setDescription('Install new boiler');
+        $job5->setLocation('33 Balinasloe St.');
+
+        $jobApplication1 = new JobApplication();
+        $jobApplication1->setPrice(110);
+        $jobApplication1->setJob($job1);
+        $jobApplication1->setTradeperson($userTrade2);
+
+        $jobApplication2 = new JobApplication();
+        $jobApplication2->setPrice(200);
+        $jobApplication2->setJob($job2);
+        $jobApplication2->setTradeperson($userTrade1);
+
+        $jobApplication3 = new JobApplication();
+        $jobApplication3->setPrice(650);
+        $jobApplication3->setJob($job3);
+        $jobApplication3->setTradeperson($userTrade1);
+
+
+        $jobApplication4 = new JobApplication();
+        $jobApplication4->setPrice(350);
+        $jobApplication4->setJob($job4);
+        $jobApplication4->setTradeperson($userTrade2);
+
+        $jobApplication5 = new JobApplication();
+        $jobApplication5->setPrice(1000);
+        $jobApplication5->setJob($job5);
+        $jobApplication5->setTradeperson($userTrade2);
+
 
 
 
@@ -191,19 +249,35 @@ class UserFixtures extends Fixture
         $manager->persist($userUser);
         $manager->persist($userAdmin);
         $manager->persist($userMatt);
+
+
         $manager->persist($userClient1);
         $manager->persist($userClient2);
+        $manager->persist($userClient3);
+        $manager->persist($userClient4);
+        $manager->persist($userClient5);
+        $manager->persist($userClient6);
+
+
         $manager->persist($userTrade1);
         $manager->persist($userTrade2);
         $manager->persist($userTrade3);
+
+
+
         $manager->persist($carpentry);
         $manager->persist($plumbing);
         $manager->persist($gardening);
         $manager->persist($paint);
         $manager->persist($locksmith);
         $manager->persist($electrical);
+
+
         $manager->persist($job1);
         $manager->persist($job2);
+        $manager->persist($job3);
+        $manager->persist($job4);
+        $manager->persist($job5);
 
         $manager->persist($county1);
         $manager->persist($county2);
@@ -238,6 +312,11 @@ class UserFixtures extends Fixture
         $manager->persist($county31);
         $manager->persist($county32);
 
+        $manager->persist($jobApplication1);
+        $manager->persist($jobApplication2);
+        $manager->persist($jobApplication3);
+        $manager->persist($jobApplication4);
+        $manager->persist($jobApplication5);
 
 
 
@@ -248,11 +327,12 @@ class UserFixtures extends Fixture
 
 
 
-    private function createUser($username, $plainPassword, $role = 'ROLE_USER'):User
+    private function createUser($username, $plainPassword,$contact, $role = 'ROLE_USER'):User
     {
         $user = new User();
         $user->setEmail($username);
         $user->setRole($role);
+        $user->setContactNumber($contact);
 
         // password - and encoding
         $encodedPassword = $this->passwordEncoder->encodePassword($user, $plainPassword);
@@ -260,4 +340,6 @@ class UserFixtures extends Fixture
 
         return $user;
     }
+
+
 }
