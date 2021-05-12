@@ -28,80 +28,11 @@
 
 
     <br>
-    <br>
-    {% if app.user %}
-        <nav>
-            <ul class="nav-links">
-
-                {% if is_granted('ROLE_ADMIN') %}
-                    <li class="nav-links">
-                        <a href="{{ url('admin') }}" >
-                            Admin Home
-                        </a>
-                    </li>
-                {% endif %}
-                {% if is_granted('ROLE_CLIENT') %}
-                    <li class="nav-links">
-                        <a href="{{ url('viewProfile') }}" >
-                            My Profile
-                        </a>
-                    </li>
-                {% endif %}
-                {% if is_granted('ROLE_TRADEPERSON') %}
-                    <li class="nav-links">
-                        <a href="{{ url('viewProfile') }}" >
-                            My Profile
-                        </a>
-                    </li>
-                {% endif %}
-
-
-
-                {% if is_granted('ROLE_TRADEPERSON') %}
-                    <li class="nav-links">
-                        <a href="{{ url('jobDashboard') }}" >
-                            Job Dashboard
-                        </a>
-                    </li>
-                {% endif %}
-
-
-                {% if is_granted('ROLE_CLIENT') %}
-                    <li class="nav-links">
-                        <a href="{{ url('jobDashboard') }}" >
-                            Job Dashboard
-                        </a>
-                    </li>
-                {% endif %}
-
-
-                {% if app.user %}
-                    <li class="dropdown-content">
-                        <a href="">Current User:  {{ app.user.username }}</a>
-
-                        </a>
-                    </li>
-                {% endif %}
-
-
-
-            </ul>
-
-        </nav>
-    {% endif %}
-    <br>
-    <br>
-
 
 
 
     <p>"Covid-19: Tradesmate is here to support you with essential call outs for repairs and servicing, including painting & decorating, electrical, and plumbing"</p>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
     <br>
     <br>
     <br>

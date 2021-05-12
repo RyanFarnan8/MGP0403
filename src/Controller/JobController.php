@@ -94,11 +94,12 @@ class JobController extends AbstractController
             $job->setContact($user->getContactNumber());
 
 
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($job);
             $entityManager->flush();
 
-            return $this->redirectToRoute('jobDashboard');
+            return $this->redirectToRoute('jobPostedSuccessfully');
         }
 
         return $this->render('job/new.html.twig', [

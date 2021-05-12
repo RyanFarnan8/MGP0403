@@ -42,10 +42,54 @@
 
         </nav>
     </header>
+    <div class="vertical-menu">
+        {% if is_granted('ROLE_CLIENT') %}
+        <a href="{{ url('viewProfile') }}">View Profile</a>
+        {% endif %}
+        {% if is_granted('ROLE_TRADEPERSON') %}
+            <a href="{{ url('viewProfile') }}">View Profile</a>
+        {% endif %}
+        {% if is_granted('ROLE_TRADEPERSON') %}
+            <a href="{{ url('job_index') }}">All Jobs You Can Apply For</a>
+        {% endif %}
+        {% if is_granted('ROLE_TRADEPERSON') %}
+            <a href="{{ url('job_completed_index', { 'id':app.user.id }) }}">View My Completed Jobs</a>
+        {% endif %}
+        {% if is_granted('ROLE_TRADEPERSON') %}
+            <a href="{{ url('job_assigned_index', { 'id':app.user.id }) }}">View My Assigned Jobs</a>
+        {% endif %}
+        {% if is_granted('ROLE_CLIENT') %}
+            <a href="{{ url('job_client_index', { 'id':app.user.id }) }}">View My Open Jobs</a>
+        {% endif %}
+        {% if is_granted('ROLE_CLIENT') %}
+            <a href="{{ url('job_assigned_index', { 'id':app.user.id }) }}">View My Assigned Jobs</a>
+        {% endif %}
+        {% if is_granted('ROLE_CLIENT') %}
+            <a href="{{ url('job_completed_index', { 'id':app.user.id }) }}">View My Completed Jobs</a>
+        {% endif %}
+        {% if is_granted('ROLE_CLIENT') %}
+            <a href="{{ path('job_new') }}">Create A New Job</a>
+        {% endif %}
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('admin') }}">Admin Homepage</a>
+        {% endif %}
 
 
 
-{#                            {% for trade in trades %}#}
+    </div>
+{#    <div class="dropdown">#}
+{#        <button class="dropbtn">Dropdown</button>#}
+{#        <div class="dropdown-content">#}
+{#            <a href="#">Link 1</a>#}
+{#            <a href="#">Link 2</a>#}
+{#            <a href="#">Link 3</a>#}
+{#        </div>#}
+{#    </div>#}
+
+
+
+
+    {#                            {% for trade in trades %}#}
 
 
 {#                                    <li><a href="">#}
@@ -68,25 +112,42 @@
             <div class="alert alert-success">
                 {{ message }}
             </div>
+    </div>
         {% endfor %}
-        {% block body %}
 
-
-
-        {% endblock %}
-
-                </div>
-            </div>
-        </div>
-
-
-
-
-    <br>
-    <br>
-    <br>
-
-
+        {% block body %}{% endblock %}
 
 </body>
+
+<style>
+    .vertical-menu {
+        width: 250px; /* Set a width if you like */
+        position: -webkit-sticky;
+        left:0;
+        top:53px;
+        height: auto;
+    }
+
+    .vertical-menu a {
+        background-color: #eee; /* Grey background color */
+        color: black; /* Black text color */
+        display: block; /* Make the links appear below each other */
+        padding: 12px; /* Add some padding */
+        text-decoration: none; /* Remove underline from links */
+        border-bottom: 1px solid black;
+        border-right: 1px solid black;
+
+    }
+
+    .vertical-menu a:hover {
+        background-color: darkgrey; /* Dark grey background on mouse-over */
+    }
+
+    .vertical-menu a.active {
+        background-color: #eee; /* Add a green color to the "active/current" link */
+        color: white;
+    }
+
+
+</style>
 </html>

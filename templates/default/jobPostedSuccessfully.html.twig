@@ -1,12 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}My Profile{% endblock %}
+{% block title %}Job Dashboard{% endblock %}
+
+{% block head %}
+
+<head>
+
+
+
+</head>
+
+{% endblock %}
+
+
 
 {% block body %}
-    <h3>Your Profile Details</h3>
-    <p>Your Profile Email: {{ app.user }}</p>
-    <p>Your Profile ID: #{{ app.user.id }}</p>
-    <p>Your Profile Role: {{ app.user.role }}</p>
+
+
+
+
 
 
 
@@ -26,11 +38,11 @@
             left: 10%;
             margin-left: -104.5px; /*104.5px is half of the button's width*/
         }
+        .test{
+            height:1000px;
 
+        }
 
 
     </style>
-
-
-
 {% endblock %}

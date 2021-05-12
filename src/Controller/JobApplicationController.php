@@ -76,7 +76,10 @@ class JobApplicationController extends AbstractController
 
         $jobApplication = new JobApplication();
 
+
         $user = $this->getUser();
+
+
 
 
 
@@ -100,11 +103,12 @@ class JobApplicationController extends AbstractController
 
 
 
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($jobApplication);
             $entityManager->flush();
 
-            return $this->redirectToRoute('jobDashboard');
+            return $this->redirectToRoute('jobApplicationSuccessfully');
         }
 
         return $this->render('job_application/new.html.twig', [

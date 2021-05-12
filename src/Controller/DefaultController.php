@@ -162,7 +162,7 @@ class DefaultController extends AbstractController
      */
     public function apply(): Response
     {
-        $template = 'default/apply.html.twig';
+        $template = 'default/jobPostedSuccessfully.html.twig';
         $args = [];
         return $this->render($template, $args);
     }
@@ -179,11 +179,21 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/job_Dashboard", name="jobDashboard")
+     * @Route("/job_Posted_Successfully", name="jobPostedSuccessfully")
      */
-    public function jobDashboard(): Response
+    public function jobPostedSuccessfully(): Response
     {
-        $template = 'default/apply.html.twig';
+        $template = 'default/jobPostedSuccessfully.html.twig';
+        $args = [];
+        return $this->render($template, $args);
+    }
+
+    /**
+     * @Route("/job_Application_Successfully", name="jobApplicationSuccessfully")
+     */
+    public function jobApplicationSuccessfully(): Response
+    {
+        $template = 'default/jobApplicationSuccessfully.html.twig';
         $args = [];
         return $this->render($template, $args);
     }

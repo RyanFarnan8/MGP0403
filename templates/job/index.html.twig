@@ -3,7 +3,7 @@
 {% block title %}Job index{% endblock %}
 
 {% block body %}
-    <h1>All Available Jobs</h1>
+    <h1>My Open Jobs</h1>
 
     <p>To make things easier, you can search jobs based on their county!</p>
     <form method="post" action="{{ url("search_county") }}">
@@ -56,9 +56,7 @@
         {% endfor %}
         </tbody>
     </table>
-    <button>
-        <a href="{{ path('jobDashboard') }}">Back</a>
-    </button>
+
 
 
 {% endblock %}
