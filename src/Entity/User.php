@@ -73,6 +73,7 @@ class User implements UserInterface
         $this->jobCompleteds = new ArrayCollection();
         $this->jobApplications = new ArrayCollection();
         $this->jobAssigneds = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -193,6 +194,11 @@ class User implements UserInterface
         return $this->email;
     }
 
+
+
+
+
+
     /**
      * @return Collection|JobCompleted[]
      */
@@ -306,4 +312,6 @@ class User implements UserInterface
 //
 //        return $this;
 //    }
+
+
 }

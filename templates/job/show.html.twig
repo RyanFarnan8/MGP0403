@@ -34,13 +34,16 @@
     </table>
 
 {% if is_granted ('ROLE_TRADEPERSON') %}
-    <a href="{{ path('job_application_new',{'job_id': job.id}) }}">
-        Apply
-    </a>
+    <button>
+        <a href="{{ path('job_application_new',{'job_id': job.id}) }}">
+            Apply
+        </a>
+    </button>
 {% endif %}
-    <a href="{{ path('job_index') }}">back to list</a>
 
-    <a href="{{ path('job_edit', {'id': job.id}) }}">edit</a>
+{#    <a href="{{ path('job_index') }}">back to list</a>#}
+
+{#    <a href="{{ path('job_edit', {'id': job.id}) }}">edit</a>#}
 <br>
     <br>
     <br>

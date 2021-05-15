@@ -23,59 +23,110 @@
     </head>
     <body>
     <header>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="{{ url('default') }}">Home</a></li>
-                <li><a href="{{ url('about') }}">About</a></li>
-                <li><a href="{{ url('contact') }}">Contact Us</a></li>
+{#        <nav>#}
+{#            <ul class="nav-links">#}
+{#                <li><a href="{{ url('default') }}">Home</a></li>#}
+{#                <li><a href="{{ url('about') }}">About</a></li>#}
+{#                <li><a href="{{ url('contact') }}">Contact Us</a></li>#}
 
-                {% if app.user %}
+{#                {% if app.user %}#}
 
-                    <li><a href="{{ url('app_logout') }}">Logout</a></li>
+{#                    <li><a href="{{ url('app_logout') }}">Logout</a></li>#}
 
-                {% else %}
-                    <li><a href="{{ url('app_login') }}">Login</a></li>
-                {% endif %}
+{#                {% else %}#}
+{#                    <li><a href="{{ url('app_login') }}">Login</a></li>#}
+{#                {% endif %}#}
 
+{#            </ul>#}
 
-            </ul>
-
-        </nav>
+{#        </nav>#}
     </header>
-    <div class="vertical-menu">
-        {% if is_granted('ROLE_CLIENT') %}
-        <a href="{{ url('viewProfile') }}">View Profile</a>
+{#    <div class="vertical-menu">#}
+{#        {% if is_granted('ROLE_CLIENT') %}#}
+{#        <a href="{{ url('viewProfile') }}">View Profile</a>#}
+{#        {% endif %}#}
+{#        {% if is_granted('ROLE_TRADEPERSON') %}#}
+{#            <a href="{{ url('viewProfile') }}">View Profile</a>#}
+{#        {% endif %}#}
+{#        {% if is_granted('ROLE_TRADEPERSON') %}#}
+{#            <a href="{{ url('job_index') }}">All Jobs You Can Apply For</a>#}
+{#        {% endif %}#}
+{#        {% if is_granted('ROLE_TRADEPERSON') %}#}
+{#            <a href="{{ url('job_completed_index', { 'id':app.user.id }) }}">View My Completed Jobs</a>#}
+{#        {% endif %}#}
+{#        {% if is_granted('ROLE_TRADEPERSON') %}#}
+{#            <a href="{{ url('job_assigned_index', { 'id':app.user.id }) }}">View My Assigned Jobs</a>#}
+{#        {% endif %}#}
+{#        {% if is_granted('ROLE_CLIENT') %}#}
+{#            <a href="{{ url('job_client_index', { 'id':app.user.id }) }}">View My Open Jobs</a>#}
+{#        {% endif %}#}
+{#        {% if is_granted('ROLE_CLIENT') %}#}
+{#            <a href="{{ url('job_assigned_index', { 'id':app.user.id }) }}">View My Assigned Jobs</a>#}
+{#        {% endif %}#}
+{#        {% if is_granted('ROLE_CLIENT') %}#}
+{#            <a href="{{ url('job_completed_index', { 'id':app.user.id }) }}">View My Completed Jobs</a>#}
+{#        {% endif %}#}
+{#        {% if is_granted('ROLE_CLIENT') %}#}
+{#            <a href="{{ path('job_new') }}">Create A New Job</a>#}
+{#        {% endif %}#}
+{#        {% if is_granted('ROLE_ADMIN') %}#}
+{#            <a href="{{ path('admin') }}">Admin Homepage</a>#}
+{#        {% endif %}#}
+
+
+
+{#    </div>#}
+    <div class="sidenav">
+
+        <a href="{{ url('default') }}">Home</a>
+        <a href="{{ url('about') }}">About</a>
+        <a href="{{ url('contact') }}">Contact Us</a>
+{% if app.user %}
+        <button class="dropdown-btn">Jobs
+            <i class="fa fa-caret-down"></i>
+        </button>
         {% endif %}
+        <div class="dropdown-container">
+
+            {% if is_granted('ROLE_TRADEPERSON') %}
+                <a href="{{ url('job_index') }}">All Jobs You Can Apply For</a>
+            {% endif %}
+            {% if is_granted('ROLE_TRADEPERSON') %}
+                <a href="{{ url('job_completed_index', { 'id':app.user.id }) }}">View My Completed Jobs</a>
+            {% endif %}
+            {% if is_granted('ROLE_TRADEPERSON') %}
+                <a href="{{ url('job_assigned_index', { 'id':app.user.id }) }}">View My Assigned Jobs</a>
+            {% endif %}
+            {% if is_granted('ROLE_CLIENT') %}
+                <a href="{{ url('job_client_index', { 'id':app.user.id }) }}">View My Open Jobs</a>
+            {% endif %}
+            {% if is_granted('ROLE_CLIENT') %}
+                <a href="{{ url('job_assigned_index', { 'id':app.user.id }) }}">View My Assigned Jobs</a>
+            {% endif %}
+            {% if is_granted('ROLE_CLIENT') %}
+                <a href="{{ url('job_completed_index', { 'id':app.user.id }) }}">View My Completed Jobs</a>
+            {% endif %}
+            {% if is_granted('ROLE_CLIENT') %}
+                <a href="{{ path('job_new') }}">Create A New Job</a>
+            {% endif %}
+        </div>
+        {% if is_granted('ROLE_CLIENT') %}
+            <a href="{{ url('viewProfile') }}">View Profile</a>
+        {% endif %}
+
         {% if is_granted('ROLE_TRADEPERSON') %}
             <a href="{{ url('viewProfile') }}">View Profile</a>
         {% endif %}
-        {% if is_granted('ROLE_TRADEPERSON') %}
-            <a href="{{ url('job_index') }}">All Jobs You Can Apply For</a>
-        {% endif %}
-        {% if is_granted('ROLE_TRADEPERSON') %}
-            <a href="{{ url('job_completed_index', { 'id':app.user.id }) }}">View My Completed Jobs</a>
-        {% endif %}
-        {% if is_granted('ROLE_TRADEPERSON') %}
-            <a href="{{ url('job_assigned_index', { 'id':app.user.id }) }}">View My Assigned Jobs</a>
-        {% endif %}
-        {% if is_granted('ROLE_CLIENT') %}
-            <a href="{{ url('job_client_index', { 'id':app.user.id }) }}">View My Open Jobs</a>
-        {% endif %}
-        {% if is_granted('ROLE_CLIENT') %}
-            <a href="{{ url('job_assigned_index', { 'id':app.user.id }) }}">View My Assigned Jobs</a>
-        {% endif %}
-        {% if is_granted('ROLE_CLIENT') %}
-            <a href="{{ url('job_completed_index', { 'id':app.user.id }) }}">View My Completed Jobs</a>
-        {% endif %}
-        {% if is_granted('ROLE_CLIENT') %}
-            <a href="{{ path('job_new') }}">Create A New Job</a>
-        {% endif %}
+
         {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path('admin') }}">Admin Homepage</a>
         {% endif %}
 
-
-
+        {% if app.user%}
+        <a href="{{ url('app_logout') }}">Log Out</a>
+        {% else %}
+        <a href="{{ url('app_login') }}">Log In</a>
+        {% endif %}
     </div>
 {#    <div class="dropdown">#}
 {#        <button class="dropbtn">Dropdown</button>#}
@@ -117,36 +168,137 @@
 
         {% block body %}{% endblock %}
 
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>//* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+        }
+    </script>
+
 </body>
 
 <style>
-    .vertical-menu {
-        width: 250px; /* Set a width if you like */
-        position: -webkit-sticky;
-        left:0;
-        top:53px;
-        height: auto;
+    /*.vertical-menu {*/
+    /*    !*width: 250px; !* Set a width if you like *!*!*/
+    /*    !*position: -webkit-sticky;*!*/
+    /*    !*left:0;*!*/
+    /*    !*top:53px;*!*/
+    /*    !*height: auto;*!*/
+    /*    height: 100%;*/
+    /*    width: 300px;*/
+    /*    position: fixed;*/
+    /*    z-index: 1;*/
+    /*    top: 0px;*/
+    /*    left: 0;*/
+    /*    background-color: #111;*/
+    /*    overflow-x: hidden;*/
+
+    /*}*/
+
+    /*.vertical-menu a {*/
+    /*    !*background-color: #eee; !* Grey background color *!*!*/
+    /*    !*color: black; !* Black text color *!*!*/
+    /*    !*display: block; !* Make the links appear below each other *!*!*/
+    /*    !*padding: 12px; !* Add some padding *!*!*/
+    /*    !*text-decoration: none; !* Remove underline from links *!*!*/
+    /*    !*border-bottom: 1px solid black;*!*/
+    /*    !*border-right: 1px solid black;*!*/
+
+    /*    padding: 6px 8px 6px 16px;*/
+    /*    text-decoration: none;*/
+    /*    font-size: 10px;*/
+    /*    color: white;*/
+    /*    display: block;*/
+    /*    border: none;*/
+    /*    background: none;*/
+    /*    width:100%;*/
+    /*    text-align: left;*/
+    /*    cursor: pointer;*/
+    /*    outline: none;*/
+
+    /*}*/
+
+    /*.vertical-menu a:hover {*/
+    /*    background-color: darkgrey; !* Dark grey background on mouse-over *!*/
+    /*}*/
+
+    /*.vertical-menu a.active {*/
+    /*    background-color: #eee; !* Add a green color to the "active/current" link *!*/
+    /*    color: white;*/
+    /*}*/
+
+    /* Fixed sidenav, full height */
+    .sidenav {
+        height: 100%;
+        width: 200px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        padding-top: 20px;
     }
 
-    .vertical-menu a {
-        background-color: #eee; /* Grey background color */
-        color: black; /* Black text color */
-        display: block; /* Make the links appear below each other */
-        padding: 12px; /* Add some padding */
-        text-decoration: none; /* Remove underline from links */
-        border-bottom: 1px solid black;
-        border-right: 1px solid black;
-
+    /* Style the sidenav links and the dropdown button */
+    .sidenav a, .dropdown-btn {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 15px;
+        color: #818181;
+        display: block;
+        border: none;
+        background: none;
+        width:100%;
+        text-align: left;
+        cursor: pointer;
+        outline: none;
     }
 
-    .vertical-menu a:hover {
-        background-color: darkgrey; /* Dark grey background on mouse-over */
+    /* On mouse-over */
+    .sidenav a:hover, .dropdown-btn:hover {
+        color: #f1f1f1;
     }
 
-    .vertical-menu a.active {
-        background-color: #eee; /* Add a green color to the "active/current" link */
+    /* Main content */
+    .main {
+        margin-left: 200px; /* Same as the width of the sidenav */
+        font-size: 20px; /* Increased text to enable scrolling */
+        padding: 0px 10px;
+    }
+
+    /* Add an active class to the active dropdown button */
+    .active {
+        background-color: green;
         color: white;
     }
+
+    /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+    .dropdown-container {
+        display: none;
+        background-color: #262626;
+        padding-left: 8px;
+    }
+
+    /* Optional: Style the caret down icon */
+    .fa-caret-down {
+        float: right;
+        padding-right: 8px;
+    }
+
 
 
 </style>

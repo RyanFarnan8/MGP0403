@@ -4,75 +4,15 @@
 
 {% block body %}
 
-<body>
-<hr>
-<h5>Search Job By County</h5>
-{% if search_text is defined %}
-    You typed in: {{search_text}}
-{% endif %}
-<form method="post" action="{{ url("search_county") }}">
 
-    <input name="county">
-    <input type="submit">
-</form>
-<hr>
-
-
-
-
-    <h3>Here is a list of Carpentry Jobs </h3>
-    <table>
-
-        <thead>
-        <tr>
-
-            <th>Creator</th>
-            <th>Contact</th>
-            <th>Trade</th>
-            <th>Description</th>
-            <th>Location</th>
-        </tr>
-
-        </thead>
-
-
-        <tbody>{% for job in job %}
-            {% if job.trade == 'Carpentry' %}
-
-        <tr>
-            <td>{{ job.creator }}</td>
-            <td>{{ job.contact }}</td>
-            <td>{{ job.trade }}</td>
-            <td>{{ job.description }}</td>
-            <td>{{ job.location }}</td>
-        </tr>
-
-
-
-
-
-
-
-
-
-{% endif %}
-
-
-        {% endfor %} </tbody>
-
-
-
-
-    </table>
-
+    <h3>Looking For Someone To Do Carpentry Work ? </h3>
     <br>
+    <h5>We offer TradeMates to carry out a variety of jobs</h5>
+
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed hendrerit purus, sed gravida justo. Vivamus ac congue orci. Ut vestibulum ut felis convallis imperdiet. Donec nisl nibh, venenatis eu eros vel, convallis ornare elit. Pellentesque luctus hendrerit lorem, a feugiat sapien vehicula nec.</p>
     <br>
-    <a href ="{{asset('/job')}}">
-        <button type="button">Post A Job</button></a>
-
-
-
-</body>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed hendrerit purus, sed gravida justo. Vivamus ac congue orci. Ut vestibulum ut felis convallis imperdiet. Donec nisl nibh, venenatis eu eros vel, convallis ornare elit. Pellentesque luctus hendrerit lorem, a feugiat sapien vehicula nec.</p>
 
 
 

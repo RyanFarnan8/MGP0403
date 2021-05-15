@@ -5,14 +5,33 @@
 {% block body %}
 
 
-<h1>Contact Page</h1>
+<h1>Contact Us?</h1>
 
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed nisl auctor, efficitur mi laoreet, tincidunt lorem. Aenean quis felis eu sapien semper gravida maximus tincidunt lectus. Phasellus eu mi sollicitudin sapien cursus egestas sed sed nibh. Fusce nec augue nisl. Praesent egestas nibh lectus, sit amet tincidunt elit facilisis sollicitudin. Morbi faucibus pulvinar nulla, ac pulvinar neque imperdiet vitae. Cras consequat, ante vitae semper egestas, magna augue egestas orci, quis laoreet lectus massa fringilla nisl. Vivamus laoreet, leo ac suscipit bibendum, sapien justo tempus nulla, egestas ultrices magna odio a leo.</p>
 
 
 
 
+    <h1>Where to find us</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed ex tempus, euismod mi rutrum, iaculis massa. Fusce feugiat sapien eget ante bibendum hendrerit. Aliquam erat volutpat. Mauris volutpat luctus ultricies. Etiam ultrices finibus velit, efficitur accumsan lacus gravida eget. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean pulvinar, augue ac euismod gravida, nisi lectus dignissim sapien, eget bibendum libero ex at turpis. In hac habitasse platea dictumst.</p>
+    <div class="findus">
+        <img src="{{ asset('build/findus.jpg') }}" width="300" height="300"></a>
+    </div>
+
     <style>
+        .findus{
+
+            padding: 50px;
+
+            transition: transform .2s; /* Animation */
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+        }
+
+        .findus:hover {
+            transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+        }
         a {
             text-decoration: none;
 
