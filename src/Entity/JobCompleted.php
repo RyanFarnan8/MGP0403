@@ -27,6 +27,11 @@ class JobCompleted
      */
     private $creator;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="ManyToOne")
+     */
+    private $tradePerson;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -55,4 +60,17 @@ class JobCompleted
 
         return $this;
     }
+
+    public function getTradePerson(): ?User
+    {
+        return $this->tradePerson;
+    }
+
+    public function setTradePerson(?User $tradePerson): self
+    {
+        $this->tradePerson = $tradePerson;
+
+        return $this;
+    }
+
 }

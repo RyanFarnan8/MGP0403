@@ -3,7 +3,15 @@
 {% block title %}Job index{% endblock %}
 
 {% block body %}
+    {% if is_granted ('ROLE_CLIENT') %}
     <h1>My Open Jobs</h1>
+    {% endif %}
+
+    {% if is_granted ('ROLE_TRADEPERSON') %}
+        <h1>All Jobs You Can Apply For</h1>
+    {% endif %}
+
+
 
     <p>To make things easier, you can search jobs based on their county!</p>
     <form method="post" action="{{ url("search_county") }}">

@@ -69,23 +69,14 @@ class JobApplicationController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="job_application_new", methods={"GET","POST"})
+     * @Route("/new/{id}", name="job_application_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Job $job,Request $request): Response
     {
 
         $jobApplication = new JobApplication();
-
-
+        $jobApplication->setJob($job);
         $user = $this->getUser();
-
-
-
-
-
-
-
-
 
         $form = $this->createForm(JobApplicationType::class, $jobApplication);
         $form->handleRequest($request);

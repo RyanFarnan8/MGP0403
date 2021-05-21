@@ -9,10 +9,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
+
 
 /**
  * @Route("/job_completed")
+ *@Security("is_granted('ROLE_CLIENT') or is_granted('ROLE_TRADEPERSON')")
  */
+
+
+
 class JobCompletedController extends AbstractController
 {
     /**
@@ -20,9 +28,14 @@ class JobCompletedController extends AbstractController
      */
     public function index(JobCompletedRepository $jobCompletedRepository): Response
     {
-        return $this->render('job_completed/index.html.twig', [
-            'job_completeds' => $jobCompletedRepository->findAll(),
-        ]);
+
+        $user = $this->getUser();
+        $template = 'job_completed/index.html.twig';
+        $jobs = $jobCompletedRepository->findByTradePerson($user);
+        $args = [
+            'job_completeds' => $jobs
+        ];
+        return $this->render( $template, $args  );
     }
 
     /**

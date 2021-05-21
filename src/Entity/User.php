@@ -67,12 +67,18 @@ class User implements UserInterface
      */
     private $jobAssigneds;
 
+    /**
+     * @ORM\OneToMany(targetEntity=JobCompleted::class, mappedBy="tradePerson")
+     */
+    private $ManyToOne;
+
     public function __construct()
     {
         $this->jobs = new ArrayCollection();
         $this->jobCompleteds = new ArrayCollection();
         $this->jobApplications = new ArrayCollection();
         $this->jobAssigneds = new ArrayCollection();
+        $this->ManyToOne = new ArrayCollection();
 
     }
 
@@ -312,6 +318,36 @@ class User implements UserInterface
 //
 //        return $this;
 //    }
+
+/**
+ * @return Collection|JobCompleted[]
+ */
+public function getManyToOne(): Collection
+{
+    return $this->ManyToOne;
+}
+
+public function addManyToOne(JobCompleted $manyToOne): self
+{
+    if (!$this->ManyToOne->contains($manyToOne)) {
+        $this->ManyToOne[] = $manyToOne;
+        $manyToOne->setTradePerson($this);
+    }
+
+    return $this;
+}
+
+public function removeManyToOne(JobCompleted $manyToOne): self
+{
+    if ($this->ManyToOne->removeElement($manyToOne)) {
+        // set the owning side to null (unless already changed)
+        if ($manyToOne->getTradePerson() === $this) {
+            $manyToOne->setTradePerson(null);
+        }
+    }
+
+    return $this;
+}
 
 
 }

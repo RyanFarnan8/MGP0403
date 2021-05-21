@@ -35,7 +35,7 @@
 
 {% if is_granted ('ROLE_TRADEPERSON') %}
     <button>
-        <a href="{{ path('job_application_new',{'job_id': job.id}) }}">
+        <a href="{{ path('job_application_new',{'id': job.id}) }}">
             Apply
         </a>
     </button>
@@ -72,6 +72,7 @@
 
 
             </tr>
+
         {% else %}
             <tr>
                 <td colspan="3">no records found</td>
@@ -80,5 +81,5 @@
         </tbody>
     </table>
 
-    {{ include('job/_delete_form.html.twig') }}
+{#    {{ include('job/_delete_form.html.twig') }}#}
 {% endblock %}

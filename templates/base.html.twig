@@ -79,8 +79,9 @@
     <div class="sidenav">
 
         <a href="{{ url('default') }}">Home</a>
-        <a href="{{ url('about') }}">About</a>
-        <a href="{{ url('contact') }}">Contact Us</a>
+
+
+
 {% if app.user %}
         <button class="dropdown-btn">Jobs
             <i class="fa fa-caret-down"></i>
@@ -92,7 +93,7 @@
                 <a href="{{ url('job_index') }}">All Jobs You Can Apply For</a>
             {% endif %}
             {% if is_granted('ROLE_TRADEPERSON') %}
-                <a href="{{ url('job_completed_index', { 'id':app.user.id }) }}">View My Completed Jobs</a>
+                <a href="{{ url('job_completed_index') }}">View My Completed Jobs</a>
             {% endif %}
             {% if is_granted('ROLE_TRADEPERSON') %}
                 <a href="{{ url('job_assigned_index', { 'id':app.user.id }) }}">View My Assigned Jobs</a>
@@ -121,6 +122,17 @@
         {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path('admin') }}">Admin Homepage</a>
         {% endif %}
+
+        <a href="{{ url('contact') }}">Contact Us</a>
+
+        <button class="dropdown-btn">About
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+            <a href="{{ url('faq_index') }}">FAQs</a>
+            <a href="{{ url('about') }}">About Tradesmate</a>
+        </div>
+
 
         {% if app.user%}
         <a href="{{ url('app_logout') }}">Log Out</a>
@@ -165,6 +177,7 @@
             </div>
     </div>
         {% endfor %}
+
 
         {% block body %}{% endblock %}
 

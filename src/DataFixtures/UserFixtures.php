@@ -3,6 +3,8 @@
 namespace App\DataFixtures;
 
 use App\Entity\JobApplication;
+use App\Entity\JobAssigned;
+use App\Entity\JobCompleted;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -11,6 +13,7 @@ use App\Entity\User;
 use App\Entity\Job;
 use App\Entity\Trade;
 use App\Entity\County;
+use App\Entity\Faq;
 
 class UserFixtures extends Fixture
 {
@@ -28,6 +31,8 @@ class UserFixtures extends Fixture
         $userAdmin = $this->createUser('admin@admin.com', 'admin','0895463867', 'ROLE_ADMIN');
         $userMatt = $this->createUser('matt@matt.com', 'matt', '0835779567','ROLE_SUPER_ADMIN');
 
+        //Client Fixtures
+
 
         $userClient1 = $this->createUser('client1@client1.com', 'client1','0831234567','ROLE_CLIENT');
         $userClient2 = $this->createUser('client2@client2.com', 'client2','0873406521','ROLE_CLIENT');
@@ -37,7 +42,7 @@ class UserFixtures extends Fixture
         $userClient6 = $this->createUser('client6@client6.com', 'client6','0852343567','ROLE_CLIENT');
 
 
-
+        //Tradeperson Fixtures
 
         $userTrade1 = $this->createUser('trade1@trade1.com', 'trade1','0896534567','ROLE_TRADEPERSON');
         $userTrade2 = $this->createUser('trade2@trade2.com', 'trade2','0830297567','ROLE_TRADEPERSON');
@@ -45,7 +50,7 @@ class UserFixtures extends Fixture
 
 
 
-
+        //New Trade Fixtures
 
         $carpentry = new Trade();
         $carpentry ->setTitle('Carpentry');
@@ -73,7 +78,7 @@ class UserFixtures extends Fixture
 
 
 
-
+        //New Job Fixtures
 
         $job1 = new Job();
         $job1 -> setCreator($userClient1);
@@ -111,6 +116,9 @@ class UserFixtures extends Fixture
         $job5->setDescription('Install new boiler');
         $job5->setLocation('33 Balinasloe St.');
 
+
+        //Job Application Fixtures
+
         $jobApplication1 = new JobApplication();
         $jobApplication1->setPrice(110);
         $jobApplication1->setJob($job1);
@@ -138,8 +146,82 @@ class UserFixtures extends Fixture
         $jobApplication5->setTradeperson($userTrade2);
 
 
+        //Assigned Job Fixtures
+
+        $jobAssigned1 = new JobAssigned();
+        $jobAssigned1->setTradePerson($userTrade1);
+        $jobAssigned1->setCreator($userClient1);
+        $jobAssigned1->setContact('012345678');
+        $jobAssigned1->setDescription('Build wooden flower bed in back garden');
+        $jobAssigned1->setLocation('1 Main St. , Clare');
+        $jobAssigned1->setPrice('340');
 
 
+        $jobAssigned2 = new JobAssigned();
+        $jobAssigned2->setTradePerson($userTrade3);
+        $jobAssigned2->setCreator($userClient2);
+        $jobAssigned2->setContact('0832467878');
+        $jobAssigned2->setDescription('Fix leak in bathroom sink ');
+        $jobAssigned2->setLocation('65 City Lane , Clare');
+        $jobAssigned2->setPrice('140');
+
+        $jobAssigned3 = new JobAssigned();
+        $jobAssigned3->setTradePerson($userTrade2);
+        $jobAssigned3->setCreator($userClient1);
+        $jobAssigned3->setContact('0891341678');
+        $jobAssigned3->setDescription('Replace hall door locks. ASAP');
+        $jobAssigned3->setLocation('90 Main St. , Clare');
+        $jobAssigned3->setPrice('80');
+
+
+        //Completed Job Fixtures
+
+        $jobCompleted1 = new JobCompleted();
+        $jobCompleted1->setTradePerson($userTrade3);
+        $jobCompleted1->setCreator($userClient1);
+        $jobCompleted1->setDescription('Build Wooden Shed');
+
+
+        $jobCompleted2 = new JobCompleted();
+        $jobCompleted2->setTradePerson($userTrade1);
+        $jobCompleted2->setCreator($userClient2);
+        $jobCompleted2->setDescription('Paint 2 Bedroom Flat');
+
+
+        $jobCompleted3 = new JobCompleted();
+        $jobCompleted3->setTradePerson($userTrade2);
+        $jobCompleted3->setCreator($userClient3);
+        $jobCompleted3->setDescription('Install spot lights in kitchen cupboards . approx 8');
+
+
+        //FAQ Fixtures
+
+        $faq1 = new Faq();
+        $faq1->setQuestion('I am not satisfied with job carried out');
+        $faq1->setAnswer('Quisque id eleifend felis, in tempor purus. Aliquam sit amet nisl maximus, euismod dui vel, iaculis turpis.
+         Nullam feugiat, purus sit amet dapibus ornare,
+          ligula nulla volutpat lectus, laoreet laoreet sem elit at leo.');
+
+
+        $faq2 = new Faq();
+        $faq2->setQuestion('Can I cancel a job at any time?');
+        $faq2->setAnswer('Quisque id eleifend felis, in tempor purus. Aliquam sit amet nisl maximus, euismod dui vel, iaculis turpis.
+         Nullam feugiat, purus sit amet dapibus ornare,
+          ligula nulla volutpat lectus, laoreet laoreet sem elit at leo.');
+
+        $faq3 = new Faq();
+        $faq3->setQuestion('How do I file a complaint?');
+        $faq3->setAnswer('Quisque id eleifend felis, in tempor purus. Aliquam sit amet nisl maximus, euismod dui vel, iaculis turpis.
+         Nullam feugiat, purus sit amet dapibus ornare.');
+
+
+        $faq4 = new Faq();
+        $faq4->setQuestion('Can I view a tradesmate profile before I choose them for the job?');
+        $faq4->setAnswer(' Aliquam sit amet nisl maximus, euismod dui vel, iaculis turpis.
+         Nullam feugiat, purus sit amet dapibus ornare.');
+
+
+        //County Fixtures
 
         $county1 = new County();
         $county1->setCounty('Antrim');
@@ -250,7 +332,6 @@ class UserFixtures extends Fixture
         $manager->persist($userAdmin);
         $manager->persist($userMatt);
 
-
         $manager->persist($userClient1);
         $manager->persist($userClient2);
         $manager->persist($userClient3);
@@ -258,12 +339,9 @@ class UserFixtures extends Fixture
         $manager->persist($userClient5);
         $manager->persist($userClient6);
 
-
         $manager->persist($userTrade1);
         $manager->persist($userTrade2);
         $manager->persist($userTrade3);
-
-
 
         $manager->persist($carpentry);
         $manager->persist($plumbing);
@@ -271,7 +349,6 @@ class UserFixtures extends Fixture
         $manager->persist($paint);
         $manager->persist($locksmith);
         $manager->persist($electrical);
-
 
         $manager->persist($job1);
         $manager->persist($job2);
@@ -318,6 +395,18 @@ class UserFixtures extends Fixture
         $manager->persist($jobApplication4);
         $manager->persist($jobApplication5);
 
+        $manager->persist($jobAssigned1);
+        $manager->persist($jobAssigned2);
+        $manager->persist($jobAssigned3);
+
+        $manager->persist($jobCompleted1);
+        $manager->persist($jobCompleted2);
+        $manager->persist($jobCompleted3);
+
+        $manager->persist($faq1);
+        $manager->persist($faq2);
+        $manager->persist($faq3);
+        $manager->persist($faq4);
 
 
         // send query to DB

@@ -9,10 +9,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * @Route("/job/assigned")
+ * @Security("is_granted('ROLE_CLIENT') or is_granted('ROLE_TRADEPERSON')")
  */
+
+
 class JobAssignedController extends AbstractController
 {
     /**
@@ -20,10 +25,15 @@ class JobAssignedController extends AbstractController
      */
     public function index(JobAssignedRepository $jobAssignedRepository): Response
     {
-        return $this->render('job_assigned/index.html.twig', [
-            'job_assigneds' => $jobAssignedRepository->findAll(),
-        ]);
+        $user = $this->getUser();
+        $template = 'job_assigned/index.html.twig';
+        $jobs = $jobAssignedRepository->findByCreator($user);
+        $args = [
+            'job_assigneds' => $jobs
+        ];
+        return $this->render( $template, $args  );
     }
+
 
     /**
      * @Route("/new", name="job_assigned_new", methods={"GET","POST"})
@@ -91,4 +101,6 @@ class JobAssignedController extends AbstractController
 
         return $this->redirectToRoute('job_assigned_index');
     }
+
+
 }

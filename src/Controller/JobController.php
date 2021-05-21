@@ -146,9 +146,9 @@ class JobController extends AbstractController
     }
 
 //    /**
-//     * @Route("/completed/{job_id}", name="job_completed", methods={"GET"})
+//     * @Route("/job_completed/{job_id}", name="job_completed", methods={"GET"})
 //     */
-//    public function completed($job_id,JobRepository $jobRepository, Request $request ): Response
+//    public function JobCompleted($job_id,JobRepository $jobRepository, Request $request ): Response
 //    {
 //        $job = $jobRepository->find($job_id);
 //        $entityManager = $this->getDoctrine()->getManager();

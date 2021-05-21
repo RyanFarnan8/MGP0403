@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Frequently Asked Questions{% endblock %}
+
+{% block body %}
+    <h1>Frequently Asked Questions</h1>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>Question</th>
+                <th>Answer</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for faq in faqs %}
+
+            <tr>
+
+
+                <td>{{ faq.question }}</td>
+
+                <td>{{ faq.answer }}</td>
+
+                </div>
+
+
+
+                {% if is_granted('ROLE_ADMIN') %}
+                <td>
+                    <a href="{{ path('faq_show', {'id': faq.id}) }}">show</a>
+                    <a href="{{ path('faq_edit', {'id': faq.id}) }}">edit</a>
+                </td>
+                {% endif %}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% if is_granted('ROLE_ADMIN') %}
+
+    <a href="{{ path('faq_new') }}">Create new</a>
+
+    {% endif %}
+    <div class="gallery">
+        <a href ="{{asset('/contact')}}">
+            <img src="{{ asset('build/CHATICON.png') }}" height="250" width="250"></a>
+
+    </div>
+
+    <div class="gallery">
+        <a href ="{{asset('/contact')}}">
+            <img src="{{ asset('build/CALLICON.png') }}" height="250" width="250"></a>
+
+    </div>
+
+    <div class="gallery">
+        <a href ="{{asset('/contact')}}">
+            <img src="{{ asset('build/EMAILICON.png') }}" height="250" width="250"></a>
+
+    </div>
+
+    <style>
+        div.gallery {
+            margin: 10px;
+            float: left;
+            width: 180px;
+            padding:40px;
+        }
+
+        /*   div.gallery:hover {
+               border: 1px solid #777;
+           }*/
+
+        div.gallery img {
+            width: 100%;
+            height: auto;
+        }
+
+
+    </style>
+{% endblock %}
