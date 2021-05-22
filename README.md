@@ -1,9 +1,9 @@
-# 2021-individual-project-starter
+# Major Group Project Report
 
 Features of Branch:
 
-- Working registration and login
+- LaTex code for project
 
-- Database changes ('name' attribute added)
+- Do not merge with default!!!!
 
-- Navbar changes
+- Download LaTex code and upload/ No pull or push commits using git!!!
