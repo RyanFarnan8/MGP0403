@@ -12,9 +12,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
+//* @Security("is_granted('ROLE_CLIENT') or is_granted('ROLE_TRADEPERSON') or is_granted('ROLE_ADMIN')
 /**
  * @Route("/job/assigned")
- * @Security("is_granted('ROLE_CLIENT') or is_granted('ROLE_TRADEPERSON')")
+
  */
 
 
@@ -27,7 +28,8 @@ class JobAssignedController extends AbstractController
     {
         $user = $this->getUser();
         $template = 'job_assigned/index.html.twig';
-        $jobs = $jobAssignedRepository->findByCreator($user);
+        $jobs = $jobAssignedRepository->findByTradePerson($user);
+
         $args = [
             'job_assigneds' => $jobs
         ];

@@ -34,10 +34,16 @@ class County
      */
     private $jobAssigneds;
 
+    /**
+     * @ORM\OneToMany(targetEntity=MyJobApplications::class, mappedBy="county")
+     */
+    private $myJobApplications;
+
     public function __construct()
     {
         $this->jobs = new ArrayCollection();
         $this->jobAssigneds = new ArrayCollection();
+        $this->myJobApplications = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -116,6 +122,36 @@ class County
             // set the owning side to null (unless already changed)
             if ($jobAssigned->getCounty() === $this) {
                 $jobAssigned->setCounty(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MyJobApplications[]
+     */
+    public function getMyJobApplications(): Collection
+    {
+        return $this->myJobApplications;
+    }
+
+    public function addMyJobApplication(MyJobApplications $myJobApplication): self
+    {
+        if (!$this->myJobApplications->contains($myJobApplication)) {
+            $this->myJobApplications[] = $myJobApplication;
+            $myJobApplication->setCounty($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMyJobApplication(MyJobApplications $myJobApplication): self
+    {
+        if ($this->myJobApplications->removeElement($myJobApplication)) {
+            // set the owning side to null (unless already changed)
+            if ($myJobApplication->getCounty() === $this) {
+                $myJobApplication->setCounty(null);
             }
         }
 

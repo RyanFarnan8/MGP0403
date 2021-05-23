@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MyJobApplications{% endblock %}
+
+{% block body %}
+    <h1>MyJobApplications</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ my_job_application.id }}</td>
+            </tr>
+            <tr>
+                <th>Contact</th>
+                <td>{{ my_job_application.contact }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ my_job_application.description }}</td>
+            </tr>
+            <tr>
+                <th>Location</th>
+                <td>{{ my_job_application.location }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ my_job_application.price }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('my_job_applications_index') }}">back to list</a>
+
+    <a href="{{ path('my_job_applications_edit', {'id': my_job_application.id}) }}">edit</a>
+
+    {{ include('my_job_applications/_delete_form.html.twig') }}
+{% endblock %}

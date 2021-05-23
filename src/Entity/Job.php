@@ -58,9 +58,11 @@ class Job
      */
     private $jobApplications;
 
+
     public function __construct()
     {
         $this->jobApplications = new ArrayCollection();
+
     }
 
 
@@ -193,6 +195,8 @@ class Job
 
         return $this;
     }
+
+
 
 
 

@@ -82,7 +82,7 @@
 
 
 
-{% if app.user %}
+{% if is_granted('ROLE_TRADEPERSON') or is_granted('ROLE_CLIENT') %}
         <button class="dropdown-btn">Jobs
             <i class="fa fa-caret-down"></i>
         </button>
@@ -97,6 +97,9 @@
             {% endif %}
             {% if is_granted('ROLE_TRADEPERSON') %}
                 <a href="{{ url('job_assigned_index', { 'id':app.user.id }) }}">View My Assigned Jobs</a>
+            {% endif %}
+            {% if is_granted('ROLE_TRADEPERSON') %}
+                <a href="{{ url('my_job_applications_index', { 'id':app.user.id }) }}">View Job Applications</a>
             {% endif %}
             {% if is_granted('ROLE_CLIENT') %}
                 <a href="{{ url('job_client_index', { 'id':app.user.id }) }}">View My Open Jobs</a>
@@ -118,9 +121,18 @@
         {% if is_granted('ROLE_TRADEPERSON') %}
             <a href="{{ url('viewProfile') }}">View Profile</a>
         {% endif %}
-
         {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('admin') }}">Admin Homepage</a>
+            <button class="dropdown-btn">Admin
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-container">
+                <a href ="{{url('user_index')}}">User CRUD</a>
+                <a href ="{{url('job_index')}}">Open Job CRUD</a>
+{#                <a href ="{{url('job_assigned_index')}}">Assigned Job CRUD</a>#}
+{#                <a href ="{{url('job_completed_index')}}">Completed Job CRUD</a>#}
+                <a href ="{{url('trade_index')}}">Trade CRUD</a>
+                <a href="{{ url('county_index') }}">County CRUD</a>
+            </div>
         {% endif %}
 
         <a href="{{ url('contact') }}">Contact Us</a>
@@ -132,6 +144,7 @@
             <a href="{{ url('faq_index') }}">FAQs</a>
             <a href="{{ url('about') }}">About Tradesmate</a>
         </div>
+
 
 
         {% if app.user%}

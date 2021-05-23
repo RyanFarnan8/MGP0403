@@ -72,6 +72,13 @@ class User implements UserInterface
      */
     private $ManyToOne;
 
+    /**
+     * @ORM\OneToMany(targetEntity=MyJobApplications::class, mappedBy="creator")
+     */
+    private $myJobApplications;
+
+
+
     public function __construct()
     {
         $this->jobs = new ArrayCollection();
@@ -79,6 +86,8 @@ class User implements UserInterface
         $this->jobApplications = new ArrayCollection();
         $this->jobAssigneds = new ArrayCollection();
         $this->ManyToOne = new ArrayCollection();
+        $this->myJobApplications = new ArrayCollection();
+
 
     }
 
@@ -348,6 +357,38 @@ public function removeManyToOne(JobCompleted $manyToOne): self
 
     return $this;
 }
+
+/**
+ * @return Collection|MyJobApplications[]
+ */
+public function getMyJobApplications(): Collection
+{
+    return $this->myJobApplications;
+}
+
+public function addMyJobApplication(MyJobApplications $myJobApplication): self
+{
+    if (!$this->myJobApplications->contains($myJobApplication)) {
+        $this->myJobApplications[] = $myJobApplication;
+        $myJobApplication->setCreator($this);
+    }
+
+    return $this;
+}
+
+public function removeMyJobApplication(MyJobApplications $myJobApplication): self
+{
+    if ($this->myJobApplications->removeElement($myJobApplication)) {
+        // set the owning side to null (unless already changed)
+        if ($myJobApplication->getCreator() === $this) {
+            $myJobApplication->setCreator(null);
+        }
+    }
+
+    return $this;
+}
+
+
 
 
 }
