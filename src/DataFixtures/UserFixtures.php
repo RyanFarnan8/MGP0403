@@ -48,6 +48,8 @@ class UserFixtures extends Fixture
         $userTrade2 = $this->createUser('trade2@trade2.com', 'trade2','0830297567','ROLE_TRADEPERSON');
         $userTrade3 = $this->createUser('trade3@trade3.com', 'trade3','0831908769','ROLE_TRADEPERSON');
 
+        $temp = $this->createUser('userTemp@temp.com','simplepassword','46664564465','ROLE_CLIENT');
+
 
 
         //New Trade Fixtures
@@ -407,6 +409,8 @@ class UserFixtures extends Fixture
         $manager->persist($faq2);
         $manager->persist($faq3);
         $manager->persist($faq4);
+
+        $manager->persist($temp);
 
 
         // send query to DB

@@ -27,10 +27,11 @@ class UserCest
 // INSERT new user `userTemp@temp.com` into the User table
         $I->haveInRepository('App\Entity\User', [
 
-            'email' => 'userTemp@temp.com',
+            'email' => 'userTemp2@temp.com',
             'password' => 'simplepassword',
             'role' => 'ROLE_CLIENT',
-            'contact_number' => '46664564465',
+            'contactNumber' => '046664564465',
+
 
 
         ]);
@@ -45,7 +46,7 @@ class UserCest
     {
 // since we are RESETTING db after each test, the temporary user should NOT still be in the repository...
         $I->dontSeeInRepository('App\Entity\User', [
-            'email' => 'userTemp@temp.com',
+            'email' => 'userTemp8@temp.com',
         ]);
     }
 
@@ -53,7 +54,7 @@ class UserCest
     /**
      * @param \App\Tests\AcceptanceTester $I
      * @param Example $example
-     * @example(email="user@user.com", password="user")
+     * @example(email="client1@client1.com", password="client1")
      */
     public function validUserRoleUserCannotSeeLinkToAdminHomePage(AcceptanceTester $I, Example $example)
     {
@@ -64,6 +65,36 @@ class UserCest
 // ASSERT: NOT authorised
         $this->dontSeeAdminHomeLink($I);
     }
+
+    private function helperLogin(AcceptanceTester $I, $email, $password)
+    {
+        $I->amOnPage('/login');
+        $I->expect('redirect to Login page');
+        $I->seeCurrentUrlEquals('/login');
+        $I->fillField('#inputEmail', $email);
+        $I->fillField('#inputPassword', $password);
+        $I->click('Log In');
+
+        // successful login
+        $I->dontSee('Email could not be found.');
+        $I->dontSee('Invalid credentials.');
+    }
+
+    // PRIVATE - this is a "helper" method, NOT called by Codeception
+    /**
+     * ASSERT - do NOT see admin home link
+     */
+    private function dontSeeAdminHomeLink(AcceptanceTester $I)
+    {
+        $I->expect('NOT to see link to admin home');
+        $I->dontSeeLink('admin home');
+    }
+
+
+
+
+
+
 
 
 }
